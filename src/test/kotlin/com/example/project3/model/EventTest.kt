@@ -12,13 +12,13 @@ class EventTest {
         val duration = 60
         val event = Talk(name, duration)
         Assertions.assertEquals(event.name, "Writing Fast Tests Against Enterprise Rails")
-        Assertions.assertEquals(event.duration, "60min")
+        Assertions.assertEquals(event.duration, 60)
     }
     @Test
     fun `should create a networkEvent by giving  the time duration of the event, and can get the name and time duration`() {
         val duration = 60
         val event = NetworkEvent(duration)
         Assertions.assertEquals(event.name, "Networking Event")
-        Assertions.assertEquals(event.duration, "60min")
+        Assertions.assertEquals(event.duration, 60)
     }
 }
