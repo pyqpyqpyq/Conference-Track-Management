@@ -5,5 +5,6 @@ class Constant {
         const val MORNING_DURATION = 180
         const val AFTERNOON_DURATION = 180
         const val AFTERNOON_ALLOWABLE_DURATION = 60
+        const val HUMAN_COMPUTER_DISTANCE = 1
     }
 }
