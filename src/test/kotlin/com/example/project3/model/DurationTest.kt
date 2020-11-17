@@ -1,7 +1,5 @@
-package com.example.project3
+package com.example.project3.model
 
-import com.example.project3.model.Duration
-import com.example.project3.model.TimeUnit
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

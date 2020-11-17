@@ -1,7 +1,5 @@
-package com.example.project3
+package com.example.project3.model
 
-import com.example.project3.model.Conference
-import com.example.project3.model.Track
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

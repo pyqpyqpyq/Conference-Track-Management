@@ -1,6 +1,5 @@
-package com.example.project3
+package com.example.project3.model
 
-import com.example.project3.model.Track
 import com.example.project3.model.events.Talk
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -13,7 +12,7 @@ class TrackTest {
         val event = Talk(name, duration)
         val track = Track(1)
         track.morning.arrange(event)
-        Assertions.assertEquals(track.morning.restTime, 120)
+        Assertions.assertEquals(track.morning.restLength, 120)
     }
 
     @Test
@@ -23,6 +22,6 @@ class TrackTest {
         val event = Talk(name, duration)
         val track = Track(1)
         track.afternoon.arrange(event)
-        Assertions.assertEquals(track.afternoon.restTime, 180)
+        Assertions.assertEquals(track.afternoon.restLength, 180)
     }
 }
