@@ -1,4 +1,4 @@
-package com.example.project3.model
+package com.example.project3.model.events
 
 abstract class Event {
 

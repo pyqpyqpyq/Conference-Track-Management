@@ -1,5 +1,7 @@
 package com.example.project3.model
 
+import com.example.project3.model.events.NetworkEvent
+import com.example.project3.model.events.Talk
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

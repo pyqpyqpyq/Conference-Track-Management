@@ -1,7 +1,7 @@
-package com.example.project3.model
+package com.example.project3.model.events
 
 class NetworkEvent(val duration: String) : Event() {
-    var name: String = "Networking Event"
+    val name = "Networking Event"
     override fun name(): String {
         return name
     }
