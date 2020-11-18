@@ -1,5 +1,6 @@
 package com.example.project3.model
 
+import com.example.project3.model.events.Event
 import com.example.project3.model.slots.Afternoon
 import com.example.project3.model.slots.Morning
 import com.example.project3.utils.Constant
@@ -63,5 +64,20 @@ class ConferenceTest {
         Assertions.assertEquals(returnList[1], conference.getTrack(1).afternoon)
         Assertions.assertEquals(returnList[2], conference.getTrack(2).morning)
         Assertions.assertEquals(returnList[3], conference.getTrack(1).morning)
+    }
+    @Test
+    fun `should be able to put the first event to the first lots`() {
+        val input = Input()
+        val conference = Conference()
+        conference.addTrack()
+        val string1 = "Rails for Python Developers lightning"
+        val string2 = "Communicating Over Distance 60min"
+        val events=mutableListOf<Event>()
+        events.add(input.transferStringToTalk(string1))
+        events.add(input.transferStringToTalk(string2))
+        conference.getAllSlotsByOrder()
+        conference.arrangeOneEvent(events,conference.getAllSlotsByOrder())
+        Assertions.assertNotNull(conference.getTrack(1).afternoon)
+        Assertions.assertEquals(events.size,1)
     }
 }
