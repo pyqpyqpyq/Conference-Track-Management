@@ -21,4 +21,13 @@ class ConferenceTest {
         Assertions.assertEquals(conference.isLonger(input.transferStringToTalk(string2), input.transferStringToTalk(string1)), false)
         Assertions.assertEquals(conference.isLonger(input.transferStringToTalk(string1), input.transferStringToTalk(string1)), false)
     }
+    @Test
+    fun `should be able to compare the length of two talks one in minutes and another in lightning by function isLonger `() {
+        val input = Input()
+        val conference = Conference()
+        val string1 = "Writing Fast Tests Against Enterprise Rails 60min"
+        val string2 = "Rails for Python Developers lightning"
+        Assertions.assertEquals(conference.isLonger(input.transferStringToTalk(string1), input.transferStringToTalk(string2)), true)
+        Assertions.assertEquals(conference.isLonger(input.transferStringToTalk(string2), input.transferStringToTalk(string1)), false)
+    }
 }
