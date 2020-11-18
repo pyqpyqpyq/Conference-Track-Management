@@ -1,4 +1,4 @@
-package com.example.project3.utils
+package com.example.conference.constants
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test

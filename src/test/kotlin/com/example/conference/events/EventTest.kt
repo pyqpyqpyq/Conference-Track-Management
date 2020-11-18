@@ -1,7 +1,7 @@
-package com.example.project3.model.events
+package com.example.conference.events
 
-import com.example.project3.model.Duration
-import com.example.project3.model.TimeUnit
+import com.example.conference.Duration
+import com.example.conference.TimeUnit
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

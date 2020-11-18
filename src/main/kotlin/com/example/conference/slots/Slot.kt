@@ -1,6 +1,6 @@
-package com.example.project3.model.slots
+package com.example.conference.slots
 
-import com.example.project3.model.events.Event
+import com.example.conference.events.Event
 
 abstract class Slot {
     private var events = mutableListOf<Event>()
@@ -9,7 +9,7 @@ abstract class Slot {
         restLength -= event.duration()
         events.add(event)
     }
-    fun getEvent(Id:Int): Event {
+    fun getEvent(Id: Int): Event {
         return events[Id]
     }
 }

@@ -1,4 +1,4 @@
-package com.example.project3.model
+package com.example.conference
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test

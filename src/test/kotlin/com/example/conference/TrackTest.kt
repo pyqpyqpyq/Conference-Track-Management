@@ -1,6 +1,6 @@
-package com.example.project3.model
+package com.example.conference
 
-import com.example.project3.model.events.Talk
+import com.example.conference.events.Talk
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

@@ -1,6 +1,6 @@
-package com.example.project3.model
+package com.example.conference
 
-import com.example.project3.utils.Constant
+import com.example.conference.constants.Constant
 
 data class Duration(val base: Int, val unit: TimeUnit) {
     fun toInt(): Int {

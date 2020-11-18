@@ -1,10 +1,10 @@
-package com.example.project3.model
+package com.example.conference
 
-import com.example.project3.model.events.Talk
-import com.example.project3.model.slots.Slot
-import com.example.project3.utils.Constant
+import com.example.conference.constants.Constant
+import com.example.conference.events.Talk
+import com.example.conference.slots.Slot
 
-class Conference {
+class ConferenceManager {
     private var tracks = mutableListOf<Track>()
 
     fun addTrack() {

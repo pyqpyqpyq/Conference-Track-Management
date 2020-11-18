@@ -1,8 +1,8 @@
-package com.example.project3.model.slots
+package com.example.conference.slots
 
-import com.example.project3.model.Duration
-import com.example.project3.model.TimeUnit
-import com.example.project3.model.events.Talk
+import com.example.conference.Duration
+import com.example.conference.TimeUnit
+import com.example.conference.events.Talk
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 

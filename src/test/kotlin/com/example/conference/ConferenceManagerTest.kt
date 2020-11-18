@@ -1,24 +1,24 @@
-package com.example.project3.model
+package com.example.conference
 
-import com.example.project3.model.events.Talk
-import com.example.project3.model.slots.Afternoon
-import com.example.project3.model.slots.Morning
-import com.example.project3.utils.Constant
-import com.example.project3.utils.Input
+import com.example.conference.constants.Constant
+import com.example.conference.events.Talk
+import com.example.conference.slots.Afternoon
+import com.example.conference.slots.Morning
+import com.example.conference.utils.InputUtil
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class ConferenceTest {
+class ConferenceManagerTest {
     @Test
     fun `should be able to init a conference and it can be able to add tracks`() {
-        val conference = Conference()
+        val conference = ConferenceManager()
         conference.addTrack()
         Assertions.assertEquals(conference.getTrack(1), Track(1))
     }
     @Test
     fun `should be able to rank the list of talks by their length in descending, so the shortest event should be in the last`() {
-        val input = Input()
-        val conference = Conference()
+        val input = InputUtil()
+        val conference = ConferenceManager()
         val inputList = input.read()
         val string = "Rails for Python Developers lightning"
         conference.rankTalks(inputList)
@@ -26,8 +26,8 @@ class ConferenceTest {
     }
     @Test
     fun `should be able to rank the list of slots by their length in descending, so the shortest event should be in the last`() {
-        val conference = Conference()
-        val input = Input()
+        val conference = ConferenceManager()
+        val input = InputUtil()
         val morning1 = Morning()
         val morning2 = Morning()
         val string = "Rails for Python Developers lightning"
@@ -41,7 +41,7 @@ class ConferenceTest {
     }
     @Test
     fun `should be able to get all the slots of the conference`() {
-        val conference = Conference()
+        val conference = ConferenceManager()
         conference.addTrack()
         Assertions.assertEquals(conference.getAllSlots().size, 2)
         Assertions.assertEquals(conference.getAllSlots()[0], conference.getTrack(1).morning)
@@ -51,8 +51,8 @@ class ConferenceTest {
     }
     @Test
     fun `should be able to get all the slots of the conference in Descending rate`() {
-        val input = Input()
-        val conference = Conference()
+        val input = InputUtil()
+        val conference = ConferenceManager()
         conference.addTrack()
         conference.addTrack()
         val string1 = "Rails for Python Developers lightning"
@@ -67,8 +67,8 @@ class ConferenceTest {
     }
     @Test
     fun `should be able to put the first event to the first lots`() {
-        val input = Input()
-        val conference = Conference()
+        val input = InputUtil()
+        val conference = ConferenceManager()
         conference.addTrack()
         val string1 = "Rails for Python Developers lightning"
         val string2 = "Communicating Over Distance 60min"
@@ -83,8 +83,8 @@ class ConferenceTest {
 
     @Test
     fun `should be able to arrange all talks when given a small list of talks`() {
-        val input = Input()
-        val conference = Conference()
+        val input = InputUtil()
+        val conference = ConferenceManager()
         conference.addTrack()
         val string1 = "Writing Fast Tests Against Enterprise Rails 60min"
         val string2 = "Overdoing it in Python 45min"

@@ -1,6 +1,6 @@
-package com.example.project3.model.slots
+package com.example.conference.slots
 
-import com.example.project3.utils.Constant
+import com.example.conference.constants.Constant
 
 class Afternoon : Slot() {
     var length = Constant.AFTERNOON_ALLOWABLE_DURATION + Constant.AFTERNOON_DURATION

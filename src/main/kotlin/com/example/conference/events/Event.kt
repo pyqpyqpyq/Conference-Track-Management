@@ -1,4 +1,4 @@
-package com.example.project3.model.events
+package com.example.conference.events
 
 abstract class Event {
     abstract fun name(): String

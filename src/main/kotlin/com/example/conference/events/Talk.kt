@@ -1,6 +1,6 @@
-package com.example.project3.model.events
+package com.example.conference.events
 
-import com.example.project3.model.Duration
+import com.example.conference.Duration
 
 data class Talk(var name: String, var duration: Duration) : Event() {
     override fun name(): String {

@@ -1,6 +1,6 @@
-package com.example.project3.model.events
+package com.example.conference.events
 
-import com.example.project3.model.Duration
+import com.example.conference.Duration
 
 class NetworkEvent(val duration: Duration) : Event() {
     val name = "Networking Event"

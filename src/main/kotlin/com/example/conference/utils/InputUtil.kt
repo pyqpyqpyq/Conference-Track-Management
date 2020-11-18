@@ -1,11 +1,12 @@
-package com.example.project3.utils
-import com.example.project3.model.Duration
-import com.example.project3.model.TimeUnit
-import com.example.project3.model.events.Talk
+package com.example.conference.utils
+import com.example.conference.Duration
+import com.example.conference.TimeUnit
+import com.example.conference.constants.Constant
+import com.example.conference.events.Talk
 import java.io.File
 import java.io.InputStream
 
-class Input {
+class InputUtil {
     fun read(): MutableList<Talk> {
         val inputStream: InputStream = File(Constant.INPUT_FILE_PATH).inputStream()
         val talkList = mutableListOf<Talk>()
