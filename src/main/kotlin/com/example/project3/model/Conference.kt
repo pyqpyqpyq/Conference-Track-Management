@@ -1,6 +1,7 @@
 package com.example.project3.model
 
 import com.example.project3.model.events.Talk
+import com.example.project3.model.slots.Slot
 import com.example.project3.utils.Constant
 
 class Conference {
@@ -13,6 +14,10 @@ class Conference {
     }
     fun rankTalks(inputList: MutableList<Talk>): MutableList<Talk> {
         inputList.sortByDescending { it.duration() }
+        return inputList
+    }
+    fun rankSlots(inputList: MutableList<Slot>): MutableList<Slot> {
+        inputList.sortByDescending { it.restLength }
         return inputList
     }
 }
