@@ -2,7 +2,7 @@ package com.example.project3.model.events
 
 import com.example.project3.model.Duration
 
-class Talk(var name: String, var duration: Duration) : Event() {
+data class Talk(var name: String, var duration: Duration) : Event() {
     override fun name(): String {
         return name
     }
