@@ -41,4 +41,10 @@ class Conference {
         slots[0].arrange(events[0])
         events.removeAt(0)
     }
+    fun arrangeConference(talks: MutableList<Talk>) {
+        rankTalks(talks)
+        while (talks.isNotEmpty()) {
+            arrangeOneTalk(talks, getAllSlotsByOrder())
+        }
+    }
 }

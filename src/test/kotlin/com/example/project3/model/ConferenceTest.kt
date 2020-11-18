@@ -80,4 +80,24 @@ class ConferenceTest {
         Assertions.assertNotNull(conference.getTrack(1).afternoon)
         Assertions.assertEquals(talks.size, 1)
     }
+
+    @Test
+    fun `should be able to arrange all talks when given a small list of talks`() {
+        val input = Input()
+        val conference = Conference()
+        conference.addTrack()
+        val string1 = "Writing Fast Tests Against Enterprise Rails 60min"
+        val string2 = "Overdoing it in Python 45min"
+        val string3 = "Lua for the Masses 30min"
+        val string4 = "Ruby Errors from Mismatched Gem Versions 45min"
+        val talks = mutableListOf<Talk>()
+        talks.add(input.transferStringToTalk(string1))
+        talks.add(input.transferStringToTalk(string2))
+        talks.add(input.transferStringToTalk(string3))
+        talks.add(input.transferStringToTalk(string4))
+        conference.arrangeConference(talks)
+        Assertions.assertEquals(talks.size, 0)
+        Assertions.assertNotEquals(conference.getTrack(1).morning.restLength, 180)
+        Assertions.assertNotEquals(conference.getTrack(1).morning.restLength, 240)
+    }
 }
