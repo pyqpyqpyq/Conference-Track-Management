@@ -2,7 +2,7 @@ package com.example.project3.model
 
 import com.example.project3.utils.Constant
 
-class Duration(val base: Int, val unit: TimeUnit) {
+data class Duration(val base: Int, val unit: TimeUnit) {
     fun toInt(): Int {
         return base * unit.factor
     }
