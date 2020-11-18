@@ -46,7 +46,6 @@ class ConferenceTest {
         Assertions.assertEquals(conference.getAllSlots()[0], conference.getTrack(1).morning)
         Assertions.assertEquals(conference.getAllSlots()[1], conference.getTrack(1).afternoon)
         conference.addTrack()
-        print(conference.getAllSlots())
         Assertions.assertEquals(conference.getAllSlots().size, 4)
     }
     @Test
@@ -64,6 +63,5 @@ class ConferenceTest {
         Assertions.assertEquals(returnList[1], conference.getTrack(1).afternoon)
         Assertions.assertEquals(returnList[2], conference.getTrack(2).morning)
         Assertions.assertEquals(returnList[3], conference.getTrack(1).morning)
-
     }
 }
