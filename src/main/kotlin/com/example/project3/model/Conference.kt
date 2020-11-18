@@ -1,11 +1,8 @@
 package com.example.project3.model
 
-import com.example.project3.model.events.Event
 import com.example.project3.model.events.Talk
 import com.example.project3.model.slots.Slot
 import com.example.project3.utils.Constant
-import com.example.project3.utils.Input
-import com.sun.javafx.embed.AbstractEvents
 
 class Conference {
     private var tracks = mutableListOf<Track>()
@@ -40,11 +37,8 @@ class Conference {
         }
         return rankSlots(availableSlots)
     }
-    fun arrangeOneEvent(events: MutableList<Event>, slots:MutableList<Slot>){
+    fun arrangeOneTalk(events: MutableList<Talk>, slots: MutableList<Slot>) {
         slots[0].arrange(events[0])
         events.removeAt(0)
     }
-
-
-
 }

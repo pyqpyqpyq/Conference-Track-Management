@@ -1,6 +1,6 @@
 package com.example.project3.model
 
-import com.example.project3.model.events.Event
+import com.example.project3.model.events.Talk
 import com.example.project3.model.slots.Afternoon
 import com.example.project3.model.slots.Morning
 import com.example.project3.utils.Constant
@@ -72,12 +72,12 @@ class ConferenceTest {
         conference.addTrack()
         val string1 = "Rails for Python Developers lightning"
         val string2 = "Communicating Over Distance 60min"
-        val events=mutableListOf<Event>()
-        events.add(input.transferStringToTalk(string1))
-        events.add(input.transferStringToTalk(string2))
+        val talks = mutableListOf<Talk>()
+        talks.add(input.transferStringToTalk(string1))
+        talks.add(input.transferStringToTalk(string2))
         conference.getAllSlotsByOrder()
-        conference.arrangeOneEvent(events,conference.getAllSlotsByOrder())
+        conference.arrangeOneTalk(talks, conference.getAllSlotsByOrder())
         Assertions.assertNotNull(conference.getTrack(1).afternoon)
-        Assertions.assertEquals(events.size,1)
+        Assertions.assertEquals(talks.size, 1)
     }
 }
