@@ -40,4 +40,13 @@ class SlotTest {
         morning.arrange(event)
         Assertions.assertEquals(morning.restLength, 120)
     }
+    @Test
+    fun `The slot can also get the corresponding arranged event by it id`() {
+        val name = "Writing Fast Tests Against Enterprise Rails"
+        val duration = 60
+        val event = Talk(name, Duration(duration, TimeUnit.MINUTES))
+        val morning = Morning()
+        morning.arrange(event)
+        Assertions.assertEquals(morning.getEvent(0), event)
+    }
 }

@@ -9,4 +9,7 @@ abstract class Slot {
         restLength -= event.duration()
         events.add(event)
     }
+    fun getEvent(Id:Int): Event {
+        return events[Id]
+    }
 }
