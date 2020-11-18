@@ -1,5 +1,7 @@
 package com.example.project3.model.slots
 
+import com.example.project3.model.Duration
+import com.example.project3.model.TimeUnit
 import com.example.project3.model.events.Talk
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -9,7 +11,7 @@ class SlotTest {
     fun `It should be able to arrange the event to the slot`() {
         val name = "Writing Fast Tests Against Enterprise Rails"
         val duration = 60
-        val event = Talk(name, duration)
+        val event = Talk(name, Duration(duration, TimeUnit.MINUTES))
         val morning = Morning()
         morning.arrange(event)
     }
@@ -33,7 +35,7 @@ class SlotTest {
     fun `The slot should be able to record the rest time and when arrange the event the restTime get minus`() {
         val name = "Writing Fast Tests Against Enterprise Rails"
         val duration = 60
-        val event = Talk(name, duration)
+        val event = Talk(name, Duration(duration, TimeUnit.MINUTES))
         val morning = Morning()
         morning.arrange(event)
         Assertions.assertEquals(morning.restLength, 120)
