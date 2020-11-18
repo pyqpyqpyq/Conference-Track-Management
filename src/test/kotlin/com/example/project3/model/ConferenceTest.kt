@@ -49,4 +49,21 @@ class ConferenceTest {
         print(conference.getAllSlots())
         Assertions.assertEquals(conference.getAllSlots().size, 4)
     }
+    @Test
+    fun `should be able to get all the slots of the conference in Descending rate`() {
+        val input = Input()
+        val conference = Conference()
+        conference.addTrack()
+        conference.addTrack()
+        val string1 = "Rails for Python Developers lightning"
+        val string2 = "Communicating Over Distance 60min"
+        conference.getTrack(1).afternoon.arrange(input.transferStringToTalk(string1))
+        conference.getTrack(1).morning.arrange(input.transferStringToTalk(string2))
+        val returnList = conference.rankSlots(conference.getAllSlotsByOrder())
+        Assertions.assertEquals(returnList[0], conference.getTrack(2).afternoon)
+        Assertions.assertEquals(returnList[1], conference.getTrack(1).afternoon)
+        Assertions.assertEquals(returnList[2], conference.getTrack(2).morning)
+        Assertions.assertEquals(returnList[3], conference.getTrack(1).morning)
+
+    }
 }

@@ -29,4 +29,12 @@ class Conference {
         }
         return availableSlots
     }
+    fun getAllSlotsByOrder(): MutableList<Slot> {
+        var availableSlots = mutableListOf<Slot>()
+        for (anyTrack in tracks) {
+            availableSlots.add(anyTrack.morning)
+            availableSlots.add(anyTrack.afternoon)
+        }
+        return rankSlots(availableSlots)
+    }
 }
