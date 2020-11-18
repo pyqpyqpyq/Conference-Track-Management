@@ -38,4 +38,15 @@ class ConferenceTest {
         Assertions.assertEquals(slotList[1], morning2)
         Assertions.assertEquals(slotList[2], morning1)
     }
+    @Test
+    fun `should be able to get all the slots of the conference`() {
+        val conference = Conference()
+        conference.addTrack()
+        Assertions.assertEquals(conference.getAllSlots().size, 2)
+        Assertions.assertEquals(conference.getAllSlots()[0], conference.getTrack(1).morning)
+        Assertions.assertEquals(conference.getAllSlots()[1], conference.getTrack(1).afternoon)
+        conference.addTrack()
+        print(conference.getAllSlots())
+        Assertions.assertEquals(conference.getAllSlots().size, 4)
+    }
 }
