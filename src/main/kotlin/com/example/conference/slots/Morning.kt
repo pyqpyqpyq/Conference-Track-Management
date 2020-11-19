@@ -7,4 +7,7 @@ class Morning : Slot() {
     override val startTime: LocalTime = LocalTime.of(9, 0)
     val length = Constant.MORNING_DURATION
     override var restLength = Constant.MORNING_DURATION
+    init {
+        addedTime.add(startTime)
+    }
 }
