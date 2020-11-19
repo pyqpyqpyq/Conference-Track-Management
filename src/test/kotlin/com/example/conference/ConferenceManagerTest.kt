@@ -96,7 +96,19 @@ class ConferenceManagerTest {
         conference.getAllSlotsByOrder()
         Assertions.assertEquals(conference.arrangeOneTalk(talks, conference.getAllSlotsByOrder()), true)
     }
-
+    @Test
+    fun `should be able to put the first event to the first lots if unsuccessful return false`() {
+        val input = InputUtil()
+        val conference = ConferenceManager()
+        conference.addTrack()
+        val string1 = "Rails for Python Developers lightning"
+        val string2 = "Communicating Over Distance 6000min"
+        val talks = mutableListOf<Talk>()
+        talks.add(input.transferStringToTalk(string1))
+        talks.add(input.transferStringToTalk(string2))
+        conference.getAllSlotsByOrder()
+        Assertions.assertEquals(conference.arrangeOneTalk(talks, conference.getAllSlotsByOrder()), false)
+    }
     @Test
     fun `should be able to arrange all talks when given a small list of talks`() {
         val input = InputUtil()
