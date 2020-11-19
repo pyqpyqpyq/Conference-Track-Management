@@ -54,4 +54,9 @@ class SlotTest {
         val morning = Morning()
         Assertions.assertEquals(morning.startTime, LocalTime.of(9, 0))
     }
+    @Test
+    fun `The Afternoon should start from the 13pm`() {
+        val afternoon = Afternoon()
+        Assertions.assertEquals(afternoon.startTime, LocalTime.of(13, 0))
+    }
 }
