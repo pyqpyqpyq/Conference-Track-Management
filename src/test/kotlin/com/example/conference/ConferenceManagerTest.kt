@@ -119,6 +119,15 @@ class ConferenceManagerTest {
         Assertions.assertEquals(conference.arrangeConference(talks), false)
     }
     @Test
+    fun `if conferenceManager arrange the talks at current tracks successful return true`() {
+        val input = InputUtil()
+        val conference = ConferenceManager()
+        val string = "Communicating Over Distance 60min"
+        val talks = mutableListOf<Talk>()
+        talks.add(input.transferStringToTalk(string))
+        Assertions.assertEquals(conference.arrangeConference(talks), true)
+    }
+    @Test
     fun `should be able to arrange all talks when given a small list of talks`() {
         val input = InputUtil()
         val conference = ConferenceManager()

@@ -51,6 +51,7 @@ class ConferenceManager {
     fun arrangeConference(talks: MutableList<Talk>): Boolean {
         while (talks.isNotEmpty()) {
             if (!arrangeOneTalk(talks, getAllSlotsByOrder())) {
+                tracks
                 return false
             }
         }
