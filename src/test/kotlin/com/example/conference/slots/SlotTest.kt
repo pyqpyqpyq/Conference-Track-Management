@@ -60,8 +60,13 @@ class SlotTest {
         Assertions.assertEquals(afternoon.startTime, LocalTime.of(13, 0))
     }
     @Test
-    fun `The added time should be add the start time first`() {
+    fun `The added time should be add the start time first in the morning`() {
         val morning = Morning()
-        Assertions.assertEquals(morning.addedTime[0],LocalTime.of(9, 0))
+        Assertions.assertEquals(morning.addedTime[0], LocalTime.of(9, 0))
+    }
+    @Test
+    fun `The added time should be add the start time first in the Afternoon`() {
+        val afternoon = Afternoon()
+        Assertions.assertEquals(afternoon.addedTime[0], LocalTime.of(13, 0))
     }
 }
