@@ -1,6 +1,7 @@
 package com.example.conference.utils
-import com.example.conference.Duration
-import com.example.conference.TimeUnit
+import com.example.conference.durations.Duration
+import com.example.conference.durations.Lightning
+import com.example.conference.durations.Minutes
 import com.example.conference.constants.Constant
 import com.example.conference.events.Talk
 import java.io.File
@@ -16,10 +17,10 @@ class InputUtil {
 
     fun transferStringToDuration(input: String): Duration {
         return if (input == "lightning") {
-            Duration(1, TimeUnit.LIGHTNING)
+            Lightning()
         } else {
             val num = input.replace(Regex("[^0-9]"), "").toInt()
-            Duration(num, TimeUnit.MINUTES)
+            Minutes(num)
         }
     }
 

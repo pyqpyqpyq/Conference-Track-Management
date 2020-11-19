@@ -14,7 +14,7 @@ class ConferenceManager {
         return tracks[id - Constant.HUMAN_COMPUTER_DISTANCE]
     }
     fun rankTalks(inputList: MutableList<Talk>): MutableList<Talk> {
-        inputList.sortByDescending { it.duration.toInt() }
+        inputList.sortByDescending { it.duration.toMinutes() }
         return inputList
     }
     fun rankSlots(inputList: MutableList<Slot>): MutableList<Slot> {

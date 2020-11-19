@@ -1,7 +1,6 @@
 package com.example.conference.events
 
-import com.example.conference.Duration
-import com.example.conference.TimeUnit
+import com.example.conference.durations.Minutes
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -10,9 +9,9 @@ class EventTest {
     fun `should create a talk by giving name and the time duration of the event, and can get the name and time duration`() {
         val name = "Writing Fast Tests Against Enterprise Rails"
         val duration = 60
-        val event = Talk(name, Duration(duration, TimeUnit.MINUTES))
+        val event = Talk(name, Minutes(duration))
         Assertions.assertEquals(event.name, "Writing Fast Tests Against Enterprise Rails")
-        Assertions.assertEquals(event.duration.toInt(), 60)
+        Assertions.assertEquals(event.duration.toMinutes(), 60)
     }
     @Test
     fun `should create a networkEvent by giving  the time duration of the event, and can get the name and time duration`() {

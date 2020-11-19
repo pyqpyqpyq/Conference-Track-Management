@@ -7,7 +7,7 @@ abstract class Slot {
     private var events = mutableListOf<Event>()
     abstract var restLength: Int
     fun arrange(talk: Talk) {
-        restLength -= talk.duration.toInt()
+        restLength -= talk.duration.toMinutes()
         events.add(talk)
     }
     fun getEvent(Id: Int): Event {
