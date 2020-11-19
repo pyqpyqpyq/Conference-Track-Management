@@ -16,10 +16,8 @@ class EventTest {
     }
     @Test
     fun `should create a networkEvent by giving  the time duration of the event, and can get the name and time duration`() {
-        val duration = 60
-        val event = NetworkEvent(Duration(duration, TimeUnit.MINUTES))
+        val event = NetworkEvent()
         Assertions.assertEquals(event.name, "Networking Event")
-        Assertions.assertEquals(event.duration.toInt(), 60)
     }
     @Test
     fun `should create a lunch time with length of 60 minutes and name is lunch`() {
