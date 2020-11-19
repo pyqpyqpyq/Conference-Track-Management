@@ -44,7 +44,7 @@ class ConferenceManager {
             false
         }
     }
-    fun arrangeConferenceWithNTracks(talks: MutableList<Talk>, n: Int): Boolean {
+    fun arrangeConferenceWithNTracks(talks: MutableList<Talk>, n: Int): MutableList<Track> {
         val tracks = mutableListOf<Track>()
         repeat(n) { addTrack(tracks) }
         val copyTalks = mutableListOf<Talk>().apply { addAll(talks) }
@@ -53,6 +53,6 @@ class ConferenceManager {
                 return arrangeConferenceWithNTracks(talks, n + Constant.ONE_MORE_TRACK)
             }
         }
-        return true
+        return tracks
     }
 }

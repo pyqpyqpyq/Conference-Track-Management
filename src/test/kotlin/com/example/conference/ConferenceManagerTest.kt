@@ -132,22 +132,12 @@ class ConferenceManagerTest {
         Assertions.assertEquals(talks1, talks2)
     }
     @Test
-    fun `if conferenceManager arrange the talks at current tracks successful return true`() {
-        val input = InputUtil()
-        val conference = ConferenceManager()
-        val string = "Communicating Over Distance 60min"
-        val talks = mutableListOf<Talk>()
-        talks.add(input.transferStringToTalk(string))
-        Assertions.assertEquals(conference.arrangeConferenceWithNTracks(talks, 1), true)
-    }
-
-    @Test
-    fun `if conferenceManager arrange the talks at current tracks unsuccessful it should recursive all itself with 1 more track`() {
+    fun `if conferenceManager arrange the talks at current tracks successful it should return the list of Track as the result output`() {
         val input = InputUtil()
         val conference = ConferenceManager()
         val string = "Communicating Over Distance 60min"
         val talks = mutableListOf<Talk>()
         repeat(50) { talks.add(input.transferStringToTalk(string)) }
-        Assertions.assertEquals(conference.arrangeConferenceWithNTracks(talks, 1), true)
+        Assertions.assertEquals(conference.arrangeConferenceWithNTracks(talks, 1).size, 8)
     }
 }
