@@ -30,7 +30,7 @@ class SlotTest {
         val duration = 60
         val event = Talk(name, Minutes(duration))
         val morning = Morning()
-        Assertions.assertEquals(morning.arrange(event),true)
+        Assertions.assertEquals(morning.arrange(event), true)
     }
     @Test
     fun `It should be unable to arrange the event to the slot if lots is shorter than the event`() {
@@ -39,7 +39,15 @@ class SlotTest {
         val event = Talk(name, Minutes(duration))
         val morning = Morning()
         morning.arrange(event)
-        Assertions.assertEquals(morning.restLength,180)
+        Assertions.assertEquals(morning.restLength, 180)
+    }
+    @Test
+    fun `It should be able to return false when arrange the event to the slot unsuccessfully`() {
+        val name = "Writing Fast Tests Against Enterprise Rails"
+        val duration = 1060
+        val event = Talk(name, Minutes(duration))
+        val morning = Morning()
+        Assertions.assertEquals(morning.arrange(event), false)
     }
     @Test
     fun `The morning should be able 180min as the length ,The Afternoon should be able 180min as the length,and should use length as the init value `() {
