@@ -9,10 +9,9 @@ class Minutes(private val base: Int) : Duration() {
     }
     override fun equals(other: Any?): Boolean {
         return when (other) {
-            !is Minutes -> false
-            else ->
-                this === other ||
-                    base == other.base
+            is Lightning -> base == 5
+            is Minutes -> base == other.base
+            else -> false
         }
     }
 }
