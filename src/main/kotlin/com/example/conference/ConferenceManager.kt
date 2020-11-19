@@ -49,9 +49,9 @@ class ConferenceManager {
         }
     }
     fun arrangeConference(talks: MutableList<Talk>): Boolean {
-        while (talks.isNotEmpty()) {
-            if (!arrangeOneTalk(talks, getAllSlotsByOrder())) {
-                tracks
+        val copyTalks = mutableListOf<Talk>().apply { addAll(talks) }
+        while (copyTalks.isNotEmpty()) {
+            if (!arrangeOneTalk(copyTalks, getAllSlotsByOrder())) {
                 return false
             }
         }

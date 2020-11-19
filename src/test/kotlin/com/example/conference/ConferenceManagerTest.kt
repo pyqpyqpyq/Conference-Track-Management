@@ -119,6 +119,18 @@ class ConferenceManagerTest {
         Assertions.assertEquals(conference.arrangeConference(talks), false)
     }
     @Test
+    fun `if conferenceManager arrange should copy a input and origin input talks should be unmodified`() {
+        val input = InputUtil()
+        val conference = ConferenceManager()
+        val string1 = "Communicating Over Distance 60min"
+        val talks1 = mutableListOf<Talk>()
+        val talks2 = mutableListOf<Talk>()
+        talks1.add(input.transferStringToTalk(string1))
+        talks2.add(input.transferStringToTalk(string1))
+        conference.arrangeConference(talks1)
+        Assertions.assertEquals(talks1, talks2)
+    }
+    @Test
     fun `if conferenceManager arrange the talks at current tracks successful return true`() {
         val input = InputUtil()
         val conference = ConferenceManager()
@@ -142,7 +154,6 @@ class ConferenceManagerTest {
         talks.add(input.transferStringToTalk(string3))
         talks.add(input.transferStringToTalk(string4))
         conference.arrangeConference(talks)
-        Assertions.assertEquals(talks.size, 0)
         Assertions.assertNotEquals(conference.getTrack(1).morning.restLength, 180)
         Assertions.assertNotEquals(conference.getTrack(1).morning.restLength, 240)
     }
