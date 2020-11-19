@@ -25,6 +25,15 @@ class SlotTest {
         morning.arrange(event)
     }
     @Test
+    fun `It should be able to return true when arrange the event to the slot `() {
+        val name = "Writing Fast Tests Against Enterprise Rails"
+        val duration = 60
+        val event = Talk(name, Minutes(duration))
+        val morning = Morning()
+
+        Assertions.assertEquals(morning.arrange(event),true)
+    }
+    @Test
     fun `The morning should be able 180min as the length ,The Afternoon should be able 180min as the length,and should use length as the init value `() {
         val morning = Morning()
         val afternoon = Afternoon()
