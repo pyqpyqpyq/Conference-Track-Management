@@ -50,7 +50,7 @@ class ConferenceManager {
         val copyTalks = mutableListOf<Talk>().apply { addAll(talks) }
         while (copyTalks.isNotEmpty()) {
             if (!arrangeOneTalk(copyTalks, getAllSlotsByOrder(tracks))) {
-                return false
+                return arrangeConferenceWithNTracks(talks, n + Constant.ONE_MORE_TRACK)
             }
         }
         return true

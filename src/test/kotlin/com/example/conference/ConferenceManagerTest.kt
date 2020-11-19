@@ -120,15 +120,6 @@ class ConferenceManagerTest {
         Assertions.assertEquals(conference.arrangeOneTalk(talks, conference.getAllSlotsByOrder(tracks)), false)
     }
     @Test
-    fun `if conferenceManager arrange the talks at current tracks unsuccessful return false`() {
-        val input = InputUtil()
-        val conference = ConferenceManager()
-        val string = "Communicating Over Distance 6000min"
-        val talks = mutableListOf<Talk>()
-        talks.add(input.transferStringToTalk(string))
-        Assertions.assertEquals(conference.arrangeConferenceWithNTracks(talks, 1), false)
-    }
-    @Test
     fun `if conferenceManager arrange should copy a input and origin input talks should be unmodified`() {
         val input = InputUtil()
         val conference = ConferenceManager()
@@ -147,6 +138,16 @@ class ConferenceManagerTest {
         val string = "Communicating Over Distance 60min"
         val talks = mutableListOf<Talk>()
         talks.add(input.transferStringToTalk(string))
+        Assertions.assertEquals(conference.arrangeConferenceWithNTracks(talks, 1), true)
+    }
+
+    @Test
+    fun `if conferenceManager arrange the talks at current tracks unsuccessful it should recursive all itself with 1 more track`() {
+        val input = InputUtil()
+        val conference = ConferenceManager()
+        val string = "Communicating Over Distance 60min"
+        val talks = mutableListOf<Talk>()
+        repeat(50) { talks.add(input.transferStringToTalk(string)) }
         Assertions.assertEquals(conference.arrangeConferenceWithNTracks(talks, 1), true)
     }
 }
