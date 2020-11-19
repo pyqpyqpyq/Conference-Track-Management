@@ -15,6 +15,12 @@ class DurationTest {
         Assertions.assertEquals(time.toMinutes(), 5)
     }
     @Test
+    fun `It should not be equals When two duration of minutes of different length`() {
+        val time1 = Minutes(6)
+        val time2 = Minutes(5)
+        Assertions.assertNotEquals(time1, time2)
+    }
+    @Test
     fun `It should be equals When unit is lightning and it is 5 minutes`() {
         val time1 = Lightning()
         val time2 = Minutes(5)
