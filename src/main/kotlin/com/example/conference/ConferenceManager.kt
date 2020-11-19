@@ -17,14 +17,17 @@ class ConferenceManager {
             Minutes(num)
         }
     }
-
     fun transferStringToTalk(string: String): Talk {
         val wordList = string.split(' ')
         val name = wordList.subList(0, wordList.size - Constant.LAST_PART_REPRESENT_DURATION).joinToString(" ")
         val duration = transferStringToDuration(wordList[wordList.size - Constant.HUMAN_COMPUTER_DISTANCE])
         return Talk(name, duration)
     }
-
+    fun transferStringListToTalkList(input: MutableList<String>): MutableList<Talk> {
+        val talkList = mutableListOf<Talk>()
+        input.stream().forEach { talkList.add(transferStringToTalk(it)) }
+        return talkList
+    }
     fun addTrack(tracks: MutableList<Track>) {
         tracks.add(Track(tracks.size + Constant.HUMAN_COMPUTER_DISTANCE))
     }

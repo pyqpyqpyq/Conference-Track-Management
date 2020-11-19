@@ -26,6 +26,15 @@ class ConferenceManagerTest {
         Assertions.assertEquals(conferenceManager.transferStringToTalk(string), Talk(name, timeUnit))
     }
     @Test
+    fun `should be able to transfer StringList to the TalkList`() {
+        val conferenceManager = ConferenceManager()
+        val string = "Writing Fast Tests Against Enterprise Rails 60min"
+        val stringList = mutableListOf<String>()
+        val talkList = mutableListOf<Talk>()
+        repeat(5) { stringList.add(string) }
+        Assertions.assertEquals(conferenceManager.transferStringListToTalkList(stringList).javaClass, talkList.javaClass)
+    }
+    @Test
     fun `should init a track when the conference is created`() {
         val conference = ConferenceManager()
         val tracks = mutableListOf<Track>()
