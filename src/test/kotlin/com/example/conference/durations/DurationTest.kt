@@ -30,4 +30,10 @@ class DurationTest {
         val time = Lightning()
         Assertions.assertEquals(time.toString(), "lightning")
     }
+    @Test
+    fun `It should be same for two time in minutes in same time length`() {
+        val time1 = Minutes(5)
+        val time2 = Minutes(5)
+        Assertions.assertEquals(time1,time2)
+    }
 }
