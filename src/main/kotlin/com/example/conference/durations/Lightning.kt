@@ -9,8 +9,9 @@ class Lightning : Duration() {
     }
     override fun equals(other: Any?): Boolean {
         return when (other) {
-            !is Lightning -> false
-            else -> true
+            is Lightning -> true
+            else ->
+                Minutes(5) == other
         }
     }
 }

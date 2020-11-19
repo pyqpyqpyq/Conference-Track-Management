@@ -1,8 +1,8 @@
 package com.example.conference.utils
+import com.example.conference.constants.Constant
 import com.example.conference.durations.Duration
 import com.example.conference.durations.Lightning
 import com.example.conference.durations.Minutes
-import com.example.conference.constants.Constant
 import com.example.conference.events.Talk
 import java.io.File
 import java.io.InputStream
