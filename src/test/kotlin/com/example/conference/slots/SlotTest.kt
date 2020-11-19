@@ -2,6 +2,7 @@ package com.example.conference.slots
 
 import com.example.conference.durations.Minutes
 import com.example.conference.events.Talk
+import com.example.conference.utils.InputUtil
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.time.LocalTime
@@ -68,5 +69,13 @@ class SlotTest {
     fun `The added time should be add the start time first in the Afternoon`() {
         val afternoon = Afternoon()
         Assertions.assertEquals(afternoon.addedTime[0], LocalTime.of(13, 0))
+    }
+    @Test
+    fun `When there is a arrange operation to the slot ,the addedTime list should record the time of the arrange operation `() {
+        val input = InputUtil()
+        val morning = Morning()
+        val string1 = "Rails for Python Developers lightning"
+        morning.arrange(input.transferStringToTalk(string1))
+        Assertions.assertEquals(morning.addedTime[1], LocalTime.of(9, 5))
     }
 }
