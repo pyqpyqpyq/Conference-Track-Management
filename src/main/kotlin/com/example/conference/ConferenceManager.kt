@@ -6,7 +6,9 @@ import com.example.conference.slots.Slot
 
 class ConferenceManager {
     private var tracks = mutableListOf<Track>()
-
+    init {
+        addTrack()
+    }
     fun addTrack() {
         tracks.add(Track(tracks.size + Constant.HUMAN_COMPUTER_DISTANCE))
     }

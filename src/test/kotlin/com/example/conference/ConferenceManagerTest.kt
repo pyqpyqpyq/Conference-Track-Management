@@ -10,6 +10,11 @@ import org.junit.jupiter.api.Test
 
 class ConferenceManagerTest {
     @Test
+    fun `should init a track when the conference is created`() {
+        val conference = ConferenceManager()
+        Assertions.assertNotNull(conference.getTrack(1))
+    }
+    @Test
     fun `should be able to init a conference and it can be able to add tracks`() {
         val conference = ConferenceManager()
         conference.addTrack()
@@ -42,7 +47,6 @@ class ConferenceManagerTest {
     @Test
     fun `should be able to get all the slots of the conference`() {
         val conference = ConferenceManager()
-        conference.addTrack()
         Assertions.assertEquals(conference.getAllSlots().size, 2)
         Assertions.assertEquals(conference.getAllSlots()[0], conference.getTrack(1).morning)
         Assertions.assertEquals(conference.getAllSlots()[1], conference.getTrack(1).afternoon)
@@ -53,7 +57,6 @@ class ConferenceManagerTest {
     fun `should be able to get all the slots of the conference in Descending rate`() {
         val input = InputUtil()
         val conference = ConferenceManager()
-        conference.addTrack()
         conference.addTrack()
         val string1 = "Rails for Python Developers lightning"
         val string2 = "Communicating Over Distance 60min"
