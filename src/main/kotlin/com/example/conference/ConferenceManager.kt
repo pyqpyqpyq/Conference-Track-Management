@@ -39,9 +39,12 @@ class ConferenceManager {
         }
         return rankSlots(availableSlots)
     }
-    fun arrangeOneTalk(events: MutableList<Talk>, slots: MutableList<Slot>) {
-        slots[0].arrange(events[0])
-        events.removeAt(0)
+    fun arrangeOneTalk(events: MutableList<Talk>, slots: MutableList<Slot>): Boolean {
+        if (slots[0].arrange(events[0])!!) {
+            events.removeAt(0)
+            return true
+        }
+        return true
     }
     fun arrangeConference(talks: MutableList<Talk>) {
         rankTalks(talks)
