@@ -21,4 +21,10 @@ class EventTest {
         Assertions.assertEquals(event.name, "Networking Event")
         Assertions.assertEquals(event.duration.toInt(), 60)
     }
+    @Test
+    fun `should create a lunch time with length of 60 minutes and name is lunch`() {
+        val event = Lunch()
+        Assertions.assertEquals(event.name, "Lunch")
+        Assertions.assertEquals(event.duration, 60)
+    }
 }
