@@ -17,6 +17,14 @@ class SlotTest {
         morning.arrange(event)
     }
     @Test
+    fun `It should be able to arrange the event to the slot if lots is longer than the event`() {
+        val name = "Writing Fast Tests Against Enterprise Rails"
+        val duration = 60
+        val event = Talk(name, Minutes(duration))
+        val morning = Morning()
+        morning.arrange(event)
+    }
+    @Test
     fun `The morning should be able 180min as the length ,The Afternoon should be able 180min as the length,and should use length as the init value `() {
         val morning = Morning()
         val afternoon = Afternoon()
