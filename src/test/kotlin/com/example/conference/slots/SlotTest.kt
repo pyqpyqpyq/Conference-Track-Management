@@ -4,6 +4,7 @@ import com.example.conference.durations.Minutes
 import com.example.conference.events.Talk
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import java.time.LocalTime
 
 class SlotTest {
     @Test
@@ -47,5 +48,10 @@ class SlotTest {
         val morning = Morning()
         morning.arrange(event)
         Assertions.assertEquals(morning.getEvent(0), event)
+    }
+    @Test
+    fun `The Morning should start from the 9am`() {
+        val morning = Morning()
+        Assertions.assertEquals(morning.startTime, LocalTime.of(9, 0))
     }
 }
