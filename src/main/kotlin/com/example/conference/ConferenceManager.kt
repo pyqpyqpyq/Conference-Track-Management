@@ -5,14 +5,10 @@ import com.example.conference.events.Talk
 import com.example.conference.slots.Slot
 
 class ConferenceManager {
-    private var tracks = mutableListOf<Track>()
-    init {
-        addTrack()
-    }
-    fun addTrack() {
+    fun addTrack(tracks: MutableList<Track>) {
         tracks.add(Track(tracks.size + Constant.HUMAN_COMPUTER_DISTANCE))
     }
-    fun getTrack(id: Int): Track {
+    fun getTrack(tracks: MutableList<Track>, id: Int): Track {
         return tracks[id - Constant.HUMAN_COMPUTER_DISTANCE]
     }
     fun rankTalks(inputList: MutableList<Talk>): MutableList<Talk> {
@@ -23,7 +19,7 @@ class ConferenceManager {
         inputList.sortByDescending { it.restLength }
         return inputList
     }
-    fun getAllSlots(): MutableList<Slot> {
+    fun getAllSlots(tracks: MutableList<Track>): MutableList<Slot> {
         val availableSlots = mutableListOf<Slot>()
         for (anyTrack in tracks) {
             availableSlots.add(anyTrack.morning)
@@ -31,7 +27,7 @@ class ConferenceManager {
         }
         return availableSlots
     }
-    fun getAllSlotsByOrder(): MutableList<Slot> {
+    fun getAllSlotsByOrder(tracks: MutableList<Track>): MutableList<Slot> {
         val availableSlots = mutableListOf<Slot>()
         for (anyTrack in tracks) {
             availableSlots.add(anyTrack.morning)
@@ -48,10 +44,12 @@ class ConferenceManager {
             false
         }
     }
-    fun arrangeConference(talks: MutableList<Talk>): Boolean {
+    fun arrangeConferenceWithNTracks(talks: MutableList<Talk>, n: Int): Boolean {
+        val tracks = mutableListOf<Track>()
+        repeat(n) { addTrack(tracks) }
         val copyTalks = mutableListOf<Talk>().apply { addAll(talks) }
         while (copyTalks.isNotEmpty()) {
-            if (!arrangeOneTalk(copyTalks, getAllSlotsByOrder())) {
+            if (!arrangeOneTalk(copyTalks, getAllSlotsByOrder(tracks))) {
                 return false
             }
         }

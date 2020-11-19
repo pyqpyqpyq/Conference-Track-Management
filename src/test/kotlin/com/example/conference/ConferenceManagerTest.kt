@@ -12,13 +12,16 @@ class ConferenceManagerTest {
     @Test
     fun `should init a track when the conference is created`() {
         val conference = ConferenceManager()
-        Assertions.assertNotNull(conference.getTrack(1))
+        val tracks = mutableListOf<Track>()
+        conference.addTrack(tracks)
+        Assertions.assertNotNull(conference.getTrack(tracks, 1))
     }
     @Test
     fun `should be able to init a conference and it can be able to add tracks`() {
         val conference = ConferenceManager()
-        conference.addTrack()
-        Assertions.assertEquals(conference.getTrack(1), Track(1))
+        val tracks = mutableListOf<Track>()
+        conference.addTrack(tracks)
+        Assertions.assertEquals(conference.getTrack(tracks, 1), Track(1))
     }
     @Test
     fun `should be able to rank the list of talks by their length in descending, so the shortest event should be in the last`() {
@@ -47,67 +50,74 @@ class ConferenceManagerTest {
     @Test
     fun `should be able to get all the slots of the conference`() {
         val conference = ConferenceManager()
-        Assertions.assertEquals(conference.getAllSlots().size, 2)
-        Assertions.assertEquals(conference.getAllSlots()[0], conference.getTrack(1).morning)
-        Assertions.assertEquals(conference.getAllSlots()[1], conference.getTrack(1).afternoon)
-        conference.addTrack()
-        Assertions.assertEquals(conference.getAllSlots().size, 4)
+        val tracks = mutableListOf<Track>()
+        conference.addTrack(tracks)
+        Assertions.assertEquals(conference.getAllSlots(tracks).size, 2)
+        Assertions.assertEquals(conference.getAllSlots(tracks)[0], conference.getTrack(tracks, 1).morning)
+        Assertions.assertEquals(conference.getAllSlots(tracks)[1], conference.getTrack(tracks, 1).afternoon)
+        conference.addTrack(tracks)
+        Assertions.assertEquals(conference.getAllSlots(tracks).size, 4)
     }
     @Test
     fun `should be able to get all the slots of the conference in Descending rate`() {
         val input = InputUtil()
         val conference = ConferenceManager()
-        conference.addTrack()
+        val tracks = mutableListOf<Track>()
+        conference.addTrack(tracks)
+        conference.addTrack(tracks)
         val string1 = "Rails for Python Developers lightning"
         val string2 = "Communicating Over Distance 60min"
-        conference.getTrack(1).afternoon.arrange(input.transferStringToTalk(string1))
-        conference.getTrack(1).morning.arrange(input.transferStringToTalk(string2))
-        val returnList = conference.rankSlots(conference.getAllSlotsByOrder())
-        Assertions.assertEquals(returnList[0], conference.getTrack(2).afternoon)
-        Assertions.assertEquals(returnList[1], conference.getTrack(1).afternoon)
-        Assertions.assertEquals(returnList[2], conference.getTrack(2).morning)
-        Assertions.assertEquals(returnList[3], conference.getTrack(1).morning)
+        conference.getTrack(tracks, 1).afternoon.arrange(input.transferStringToTalk(string1))
+        conference.getTrack(tracks, 1).morning.arrange(input.transferStringToTalk(string2))
+        val returnList = conference.rankSlots(conference.getAllSlotsByOrder(tracks))
+        Assertions.assertEquals(returnList[0], conference.getTrack(tracks, 2).afternoon)
+        Assertions.assertEquals(returnList[1], conference.getTrack(tracks, 1).afternoon)
+        Assertions.assertEquals(returnList[2], conference.getTrack(tracks, 2).morning)
+        Assertions.assertEquals(returnList[3], conference.getTrack(tracks, 1).morning)
     }
     @Test
     fun `should be able to put the first event to the first lots`() {
         val input = InputUtil()
+        val tracks = mutableListOf<Track>()
         val conference = ConferenceManager()
-        conference.addTrack()
+        conference.addTrack(tracks)
         val string1 = "Rails for Python Developers lightning"
         val string2 = "Communicating Over Distance 60min"
         val talks = mutableListOf<Talk>()
         talks.add(input.transferStringToTalk(string1))
         talks.add(input.transferStringToTalk(string2))
-        conference.getAllSlotsByOrder()
-        conference.arrangeOneTalk(talks, conference.getAllSlotsByOrder())
-        Assertions.assertNotNull(conference.getTrack(1).afternoon)
+        conference.getAllSlotsByOrder(tracks)
+        conference.arrangeOneTalk(talks, conference.getAllSlotsByOrder(tracks))
+        Assertions.assertNotNull(conference.getTrack(tracks, 1).afternoon)
         Assertions.assertEquals(talks.size, 1)
     }
     @Test
     fun `should be able to put the first event to the first lots if successful return true`() {
         val input = InputUtil()
+        val tracks = mutableListOf<Track>()
         val conference = ConferenceManager()
-        conference.addTrack()
+        conference.addTrack(tracks)
         val string1 = "Rails for Python Developers lightning"
         val string2 = "Communicating Over Distance 60min"
         val talks = mutableListOf<Talk>()
         talks.add(input.transferStringToTalk(string1))
         talks.add(input.transferStringToTalk(string2))
-        conference.getAllSlotsByOrder()
-        Assertions.assertEquals(conference.arrangeOneTalk(talks, conference.getAllSlotsByOrder()), true)
+        conference.getAllSlotsByOrder(tracks)
+        Assertions.assertEquals(conference.arrangeOneTalk(talks, conference.getAllSlotsByOrder(tracks)), true)
     }
     @Test
     fun `should be able to put the first event to the first lots if unsuccessful return false`() {
         val input = InputUtil()
         val conference = ConferenceManager()
-        conference.addTrack()
+        val tracks = mutableListOf<Track>()
+        conference.addTrack(tracks)
         val string1 = "Rails for Python Developers lightning"
         val string2 = "Communicating Over Distance 6000min"
         val talks = mutableListOf<Talk>()
         talks.add(input.transferStringToTalk(string1))
         talks.add(input.transferStringToTalk(string2))
-        conference.getAllSlotsByOrder()
-        Assertions.assertEquals(conference.arrangeOneTalk(talks, conference.getAllSlotsByOrder()), false)
+        conference.getAllSlotsByOrder(tracks)
+        Assertions.assertEquals(conference.arrangeOneTalk(talks, conference.getAllSlotsByOrder(tracks)), false)
     }
     @Test
     fun `if conferenceManager arrange the talks at current tracks unsuccessful return false`() {
@@ -116,7 +126,7 @@ class ConferenceManagerTest {
         val string = "Communicating Over Distance 6000min"
         val talks = mutableListOf<Talk>()
         talks.add(input.transferStringToTalk(string))
-        Assertions.assertEquals(conference.arrangeConference(talks), false)
+        Assertions.assertEquals(conference.arrangeConferenceWithNTracks(talks, 1), false)
     }
     @Test
     fun `if conferenceManager arrange should copy a input and origin input talks should be unmodified`() {
@@ -127,7 +137,7 @@ class ConferenceManagerTest {
         val talks2 = mutableListOf<Talk>()
         talks1.add(input.transferStringToTalk(string1))
         talks2.add(input.transferStringToTalk(string1))
-        conference.arrangeConference(talks1)
+        conference.arrangeConferenceWithNTracks(talks1, 1)
         Assertions.assertEquals(talks1, talks2)
     }
     @Test
@@ -137,24 +147,6 @@ class ConferenceManagerTest {
         val string = "Communicating Over Distance 60min"
         val talks = mutableListOf<Talk>()
         talks.add(input.transferStringToTalk(string))
-        Assertions.assertEquals(conference.arrangeConference(talks), true)
-    }
-    @Test
-    fun `should be able to arrange all talks when given a small list of talks`() {
-        val input = InputUtil()
-        val conference = ConferenceManager()
-        conference.addTrack()
-        val string1 = "Writing Fast Tests Against Enterprise Rails 60min"
-        val string2 = "Overdoing it in Python 45min"
-        val string3 = "Lua for the Masses 30min"
-        val string4 = "Ruby Errors from Mismatched Gem Versions 45min"
-        val talks = mutableListOf<Talk>()
-        talks.add(input.transferStringToTalk(string1))
-        talks.add(input.transferStringToTalk(string2))
-        talks.add(input.transferStringToTalk(string3))
-        talks.add(input.transferStringToTalk(string4))
-        conference.arrangeConference(talks)
-        Assertions.assertNotEquals(conference.getTrack(1).morning.restLength, 180)
-        Assertions.assertNotEquals(conference.getTrack(1).morning.restLength, 240)
+        Assertions.assertEquals(conference.arrangeConferenceWithNTracks(talks, 1), true)
     }
 }
