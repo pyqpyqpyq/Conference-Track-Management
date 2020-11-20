@@ -123,10 +123,11 @@ class ConferenceManagerTest {
         val tracks = mutableListOf<Track>()
         conference.addTrack(tracks)
         val string1 = "Rails for Python Developers lightning"
-        val string2 = "Communicating Over Distance 6000min"
+        val string2 = "Communicating Over Distance"
+        val duration = Minutes(Int.MAX_VALUE)
         val talks = mutableListOf<Talk>()
         talks.add(conference.transferStringToTalk(string1))
-        talks.add(conference.transferStringToTalk(string2))
+        talks.add(Talk(string2, duration))
         conference.getAllSlotsByOrder(tracks)
         Assertions.assertEquals(conference.arrangeOneTalk(talks, conference.getAllSlotsByOrder(tracks)), false)
     }
