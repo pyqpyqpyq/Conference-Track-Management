@@ -58,4 +58,11 @@ class EventTest {
         Assertions.assertEquals(event.name, "Lunch")
         Assertions.assertEquals(event.duration, 60)
     }
+    @Test
+    fun `should be able to toString to display for the talk`() {
+        val name = "Writing Fast Tests Against Enterprise Rails"
+        val duration = Minutes(60)
+        val event = Talk(name, duration)
+        Assertions.assertEquals(event.toString(),"Writing Fast Tests Against Enterprise Rails 60min")
+    }
 }
