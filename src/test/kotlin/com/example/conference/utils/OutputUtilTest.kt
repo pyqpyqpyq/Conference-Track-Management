@@ -3,6 +3,7 @@ package com.example.conference.utils
 import com.example.conference.ConferenceManager
 import com.example.conference.events.Talk
 import com.example.conference.events.Talk.Companion.transferStringToTalk
+import com.example.conference.utils.OutputUtil.Companion.output
 import org.junit.jupiter.api.Test
 
 class OutputUtilTest {
@@ -13,7 +14,6 @@ class OutputUtilTest {
         val talks = mutableListOf<Talk>()
         repeat(50) { talks.add(transferStringToTalk(string)) }
         val result = conference.arrangeConferenceWithNTracks(talks, 1)
-        val outputUtil = OutputUtil()
-        outputUtil.output(result)
+        output(result)
     }
 }

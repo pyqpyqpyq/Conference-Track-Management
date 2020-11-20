@@ -6,6 +6,6 @@ class Lunch : Event() {
     val name = "Lunch"
     val duration = Minutes(60)
     override fun toString(): String {
-        return "$name $duration"
+        return "$name"
     }
 }

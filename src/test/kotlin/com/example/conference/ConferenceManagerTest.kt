@@ -9,6 +9,7 @@ import com.example.conference.events.Talk.Companion.transferStringToTalk
 import com.example.conference.slots.Afternoon
 import com.example.conference.slots.Morning
 import com.example.conference.slots.Slot.Companion.rankSlots
+import com.example.conference.utils.InputUtil
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -133,5 +134,11 @@ class ConferenceManagerTest {
         val talks = mutableListOf<Talk>()
         repeat(50) { talks.add(transferStringToTalk(string)) }
         Assertions.assertEquals(conference.arrangeConferenceWithNTracks(talks, 1).size, 8)
+    }
+    @Test
+    fun `conferenceManager's method of arrangeConference can accept input of string and transfer string to talks and arrange talks then output the arranged tracks`() {
+        val conference = ConferenceManager()
+        val input = InputUtil.read()
+        Assertions.assertEquals(conference.arrangeConference(input).size, 2)
     }
 }

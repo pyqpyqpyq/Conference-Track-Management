@@ -1,6 +1,6 @@
 package com.example.conference.durations
 
-abstract class Duration() {
+abstract class Duration {
     companion object {
         fun transferStringToDuration(input: String): Duration {
             return if (input == "lightning") {

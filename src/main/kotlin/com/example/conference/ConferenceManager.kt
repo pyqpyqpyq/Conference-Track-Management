@@ -12,6 +12,10 @@ import com.example.conference.slots.Slot.Companion.rankSlots
 import java.time.LocalTime
 
 class ConferenceManager {
+    fun arrangeConference(input: MutableList<String>): MutableList<Track> {
+        val inputTalks = transferStringListToTalkList(input)
+        return arrangeConferenceWithNTracks(inputTalks, Constant.ONE_MORE_TRACK)
+    }
 
     fun transferStringListToTalkList(input: MutableList<String>): MutableList<Talk> {
         val talkList = mutableListOf<Talk>()
