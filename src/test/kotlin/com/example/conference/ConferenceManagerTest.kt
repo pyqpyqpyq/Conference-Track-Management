@@ -160,4 +160,13 @@ class ConferenceManagerTest {
         talks.add(conference.transferStringToTalk(string))
         outputUtil.output(conference.arrangeLunch(conference.arrangeConferenceWithNTracks(talks, 1)))
     }
+    @Test
+    fun `it should be able to arrange networkEvent at the afternoon`() {
+        val conference = ConferenceManager()
+        val outputUtil = OutputUtil()
+        val string = "Communicating Over Distance 60min"
+        val talks = mutableListOf<Talk>()
+        talks.add(conference.transferStringToTalk(string))
+        outputUtil.output(conference.arrangeNetworkEvent(conference.arrangeConferenceWithNTracks(talks, 1)))
+    }
 }

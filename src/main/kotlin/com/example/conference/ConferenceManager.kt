@@ -5,6 +5,7 @@ import com.example.conference.durations.Duration
 import com.example.conference.durations.Lightning
 import com.example.conference.durations.Minutes
 import com.example.conference.events.Lunch
+import com.example.conference.events.NetworkEvent
 import com.example.conference.events.Talk
 import com.example.conference.slots.Slot
 import java.time.LocalTime
@@ -77,7 +78,14 @@ class ConferenceManager {
         }
         return tracks
     }
-
+    fun arrangeNetworkEvent(tracks: MutableList<Track>): MutableList<Track> {
+        tracks.forEach { track ->
+            track.afternoon.events.add(NetworkEvent())
+            track.afternoon.addedTime.removeLast()
+            track.afternoon.addedTime.add(LocalTime.of(17, 0))
+        }
+        return tracks
+    }
     fun arrangeConferenceWithNTracks(talks: MutableList<Talk>, n: Int): MutableList<Track> {
         val tracks = mutableListOf<Track>()
         repeat(n) { addTrack(tracks) }
