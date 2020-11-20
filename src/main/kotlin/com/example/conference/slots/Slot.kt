@@ -7,7 +7,7 @@ import java.time.LocalTime
 abstract class Slot {
     abstract val startTime: LocalTime
     val addedTime = mutableListOf<LocalTime>()
-    private var events = mutableListOf<Event>()
+    var events = mutableListOf<Event>()
     abstract var restLength: Int
     fun arrange(talk: Talk): Boolean? {
         return if (talk.duration.toMinutes() <= restLength) {

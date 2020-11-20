@@ -63,6 +63,6 @@ class EventTest {
         val name = "Writing Fast Tests Against Enterprise Rails"
         val duration = Minutes(60)
         val event = Talk(name, duration)
-        Assertions.assertEquals(event.toString(),"Writing Fast Tests Against Enterprise Rails 60min")
+        Assertions.assertEquals(event.toString(), "Writing Fast Tests Against Enterprise Rails 60min")
     }
 }
