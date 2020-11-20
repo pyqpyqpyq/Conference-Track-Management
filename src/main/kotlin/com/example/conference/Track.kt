@@ -13,4 +13,7 @@ class Track(val id: Int) {
                 id == other.id
         }
     }
-}
+    override fun toString(): String {
+        return "Track $id:"
+    }
+        }

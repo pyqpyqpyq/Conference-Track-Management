@@ -41,4 +41,9 @@ class TrackTest {
         val track1 = Track(1)
         Assertions.assertNotEquals(track1, 1)
     }
+    @Test
+    fun `should be able to transfer to string with expected format`() {
+        val track1 = Track(1)
+        Assertions.assertEquals(track1.toString(),"Track 1:")
+    }
 }
