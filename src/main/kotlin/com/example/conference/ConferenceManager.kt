@@ -35,7 +35,7 @@ class ConferenceManager {
             false
         }
     }
-    fun arrangeLunch(tracks: MutableList<Track>): MutableList<Track> {
+    private fun arrangeLunch(tracks: MutableList<Track>): MutableList<Track> {
         tracks.forEach { track ->
             track.morning.events.add(Lunch())
             track.morning.addedTime.removeLast()
@@ -43,7 +43,7 @@ class ConferenceManager {
         }
         return tracks
     }
-    fun arrangeNetworkEvent(tracks: MutableList<Track>): MutableList<Track> {
+    private fun arrangeNetworkEvent(tracks: MutableList<Track>): MutableList<Track> {
         tracks.forEach { track ->
             track.afternoon.events.add(NetworkEvent())
             track.afternoon.addedTime.removeLast()
