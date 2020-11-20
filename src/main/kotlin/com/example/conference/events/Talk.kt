@@ -5,6 +5,15 @@ import com.example.conference.durations.Duration
 import com.example.conference.durations.Duration.Companion.transferStringToDuration
 
 class Talk(val name: String, val duration: Duration) : Event() {
+    override fun toString(): String {
+        return "$name $duration"
+    }
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            !is Talk -> false
+            else -> name == other.name && duration == other.duration
+        }
+    }
     companion object {
         fun transferStringToTalk(string: String): Talk {
             val wordList = string.split(' ')
@@ -15,16 +24,6 @@ class Talk(val name: String, val duration: Duration) : Event() {
         fun rankTalks(inputList: MutableList<Talk>): MutableList<Talk> {
             inputList.sortByDescending { it.duration.toMinutes() }
             return inputList
-        }
-    }
-    override fun toString(): String {
-        return "$name $duration"
-    }
-
-    override fun equals(other: Any?): Boolean {
-        return when (other) {
-            !is Talk -> false
-            else -> name == other.name && duration == other.duration
         }
     }
 }
