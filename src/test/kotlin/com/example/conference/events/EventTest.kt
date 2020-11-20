@@ -6,6 +6,13 @@ import org.junit.jupiter.api.Test
 
 class EventTest {
     @Test
+    fun `should be able to transfer legal String to the Talk`() {
+        val string = "Writing Fast Tests Against Enterprise Rails 60min"
+        val name = "Writing Fast Tests Against Enterprise Rails"
+        val timeUnit = Minutes(60)
+        Assertions.assertEquals(Talk.transferStringToTalk(string), Talk(name, timeUnit))
+    }
+    @Test
     fun `two Talk with different name should not be equal `() {
         val name1 = "Writing Fast Tests Against Enterprise Rails"
         val duration1 = 60
@@ -56,7 +63,7 @@ class EventTest {
     fun `should create a lunch time with length of 60 minutes and name is lunch`() {
         val event = Lunch()
         Assertions.assertEquals(event.name, "Lunch")
-        Assertions.assertEquals(event.duration, 60)
+        Assertions.assertEquals(event.duration, Minutes(60))
     }
     @Test
     fun `should be able to toString to display for the talk`() {

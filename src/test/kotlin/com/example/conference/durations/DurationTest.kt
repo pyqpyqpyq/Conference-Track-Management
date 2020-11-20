@@ -5,6 +5,13 @@ import org.junit.jupiter.api.Test
 
 class DurationTest {
     @Test
+    fun `should be able to transfer String to the Duration`() {
+        val string1 = "60min"
+        val string2 = "lightning"
+        Assertions.assertEquals(Duration.transferStringToDuration(string1), Minutes(60))
+        Assertions.assertEquals(Duration.transferStringToDuration(string2), Lightning())
+    }
+    @Test
     fun `It should be able to get the minutes of duration When unit is minutes`() {
         val time = Minutes(30)
         Assertions.assertEquals(time.toMinutes(), 30)

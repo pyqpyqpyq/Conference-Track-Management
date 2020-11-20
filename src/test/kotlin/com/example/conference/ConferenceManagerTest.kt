@@ -3,33 +3,16 @@ package com.example.conference
 import com.example.conference.Track.Companion.addTrack
 import com.example.conference.Track.Companion.getAllSlots
 import com.example.conference.Track.Companion.getTrack
-import com.example.conference.durations.Duration.Companion.transferStringToDuration
-import com.example.conference.durations.Lightning
 import com.example.conference.durations.Minutes
 import com.example.conference.events.Talk
 import com.example.conference.events.Talk.Companion.transferStringToTalk
 import com.example.conference.slots.Afternoon
 import com.example.conference.slots.Morning
 import com.example.conference.slots.Slot.Companion.rankSlots
-import com.example.conference.utils.OutputUtil
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class ConferenceManagerTest {
-    @Test
-    fun `should be able to transfer String to the Duration`() {
-        val string1 = "60min"
-        val string2 = "lightning"
-        Assertions.assertEquals(transferStringToDuration(string1), Minutes(60))
-        Assertions.assertEquals(transferStringToDuration(string2), Lightning())
-    }
-    @Test
-    fun `should be able to transfer legal String to the Talk`() {
-        val string = "Writing Fast Tests Against Enterprise Rails 60min"
-        val name = "Writing Fast Tests Against Enterprise Rails"
-        val timeUnit = Minutes(60)
-        Assertions.assertEquals(transferStringToTalk(string), Talk(name, timeUnit))
-    }
     @Test
     fun `should be able to transfer StringList to the TalkList`() {
         val conferenceManager = ConferenceManager()
@@ -150,23 +133,5 @@ class ConferenceManagerTest {
         val talks = mutableListOf<Talk>()
         repeat(50) { talks.add(transferStringToTalk(string)) }
         Assertions.assertEquals(conference.arrangeConferenceWithNTracks(talks, 1).size, 8)
-    }
-    @Test
-    fun `it should be able to arrange lunch at the mornings`() {
-        val conference = ConferenceManager()
-        val outputUtil = OutputUtil()
-        val string = "Communicating Over Distance 60min"
-        val talks = mutableListOf<Talk>()
-        talks.add(transferStringToTalk(string))
-        outputUtil.output(conference.arrangeLunch(conference.arrangeConferenceWithNTracks(talks, 1)))
-    }
-    @Test
-    fun `it should be able to arrange networkEvent at the afternoon`() {
-        val conference = ConferenceManager()
-        val outputUtil = OutputUtil()
-        val string = "Communicating Over Distance 60min"
-        val talks = mutableListOf<Talk>()
-        talks.add(transferStringToTalk(string))
-        outputUtil.output(conference.arrangeNetworkEvent(conference.arrangeConferenceWithNTracks(talks, 1)))
     }
 }

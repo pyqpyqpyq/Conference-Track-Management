@@ -60,6 +60,8 @@ class ConferenceManager {
                 return arrangeConferenceWithNTracks(talks, n + Constant.ONE_MORE_TRACK)
             }
         }
+        arrangeLunch(tracks)
+        arrangeNetworkEvent(tracks)
         return tracks
     }
 }
