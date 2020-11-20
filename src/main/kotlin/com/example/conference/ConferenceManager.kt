@@ -4,8 +4,10 @@ import com.example.conference.constants.Constant
 import com.example.conference.durations.Duration
 import com.example.conference.durations.Lightning
 import com.example.conference.durations.Minutes
+import com.example.conference.events.Lunch
 import com.example.conference.events.Talk
 import com.example.conference.slots.Slot
+import java.time.LocalTime
 
 class ConferenceManager {
 
@@ -66,6 +68,14 @@ class ConferenceManager {
         } else {
             false
         }
+    }
+    fun arrangeLunch(tracks: MutableList<Track>): MutableList<Track> {
+        tracks.forEach { track ->
+            track.morning.events.add(Lunch())
+            track.morning.addedTime.removeLast()
+            track.morning.addedTime.add(LocalTime.of(12, 0))
+        }
+        return tracks
     }
     fun arrangeConferenceWithNTracks(talks: MutableList<Talk>, n: Int): MutableList<Track> {
         val tracks = mutableListOf<Track>()

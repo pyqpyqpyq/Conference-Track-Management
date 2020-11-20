@@ -5,6 +5,7 @@ import com.example.conference.durations.Minutes
 import com.example.conference.events.Talk
 import com.example.conference.slots.Afternoon
 import com.example.conference.slots.Morning
+import com.example.conference.utils.OutputUtil
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -149,5 +150,14 @@ class ConferenceManagerTest {
         val talks = mutableListOf<Talk>()
         repeat(50) { talks.add(conference.transferStringToTalk(string)) }
         Assertions.assertEquals(conference.arrangeConferenceWithNTracks(talks, 1).size, 8)
+    }
+    @Test
+    fun `it should be able to arrange lunch at the mornings`() {
+        val conference = ConferenceManager()
+        val outputUtil = OutputUtil()
+        val string = "Communicating Over Distance 60min"
+        val talks = mutableListOf<Talk>()
+        talks.add(conference.transferStringToTalk(string))
+        outputUtil.output(conference.arrangeLunch(conference.arrangeConferenceWithNTracks(talks, 1)))
     }
 }
