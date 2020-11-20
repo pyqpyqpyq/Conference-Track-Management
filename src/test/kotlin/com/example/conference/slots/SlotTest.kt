@@ -1,11 +1,14 @@
 package com.example.conference.slots
 
 import com.example.conference.ConferenceManager
+import com.example.conference.durations.Lightning
 import com.example.conference.durations.Minutes
+import com.example.conference.events.Event
 import com.example.conference.events.Talk
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.time.LocalTime
+import kotlin.test.assertEquals
 
 class SlotTest {
     @Test
@@ -23,6 +26,21 @@ class SlotTest {
         val event = Talk(name, Minutes(duration))
         val morning = Morning()
         morning.arrange(event)
+    }
+    @Test
+    fun `It should be able to assign the event to the slot `() {
+        val name1 = "Writing Fast Tests Against Enterprise Rails"
+        val duration1 = Minutes(60)
+        val event1 = Talk(name1, duration1)
+        val name2 = "Rails for Python Developers lightning"
+        val duration2 = Lightning()
+        val event2 = Talk(name2, duration2)
+        val morning = Morning()
+        val list = mutableListOf<Event>()
+        morning.arrange(event1)
+        list.add(event2)
+        morning.events = list
+        Assertions.assertEquals(morning.events[0], event2)
     }
     @Test
     fun `It should be able to return true when arrange the event to the slot `() {

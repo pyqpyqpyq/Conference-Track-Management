@@ -77,6 +77,7 @@ class ConferenceManager {
         }
         return tracks
     }
+
     fun arrangeConferenceWithNTracks(talks: MutableList<Talk>, n: Int): MutableList<Track> {
         val tracks = mutableListOf<Track>()
         repeat(n) { addTrack(tracks) }
