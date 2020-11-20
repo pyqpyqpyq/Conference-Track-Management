@@ -14,6 +14,11 @@ import org.junit.jupiter.api.Test
 
 class ConferenceManagerTest {
     @Test
+    fun `should be able to read the file as input`() {
+        val conferenceManager = ConferenceManager()
+        conferenceManager.read().forEach { println(it) }
+    }
+    @Test
     fun `should be able to transfer StringList to the TalkList`() {
         val conferenceManager = ConferenceManager()
         val string = "Writing Fast Tests Against Enterprise Rails 60min"
@@ -138,5 +143,15 @@ class ConferenceManagerTest {
     fun `conferenceManager's method of arrangeConference can accept input of string and transfer string to talks and arrange talks then output the arranged tracks`() {
         val conference = ConferenceManager()
         conference.arrangeConference()
+    }
+    @Test
+    fun `should be able to output the result`() {
+        val conferenceManager = ConferenceManager()
+        val conference = ConferenceManager()
+        val string = "Communicating Over Distance 60min"
+        val talks = mutableListOf<Talk>()
+        repeat(50) { talks.add(transferStringToTalk(string)) }
+        val result = conference.arrangeConferenceWithNTracks(talks, 1)
+        conferenceManager.output(result)
     }
 }
