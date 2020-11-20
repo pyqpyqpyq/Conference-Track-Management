@@ -18,7 +18,7 @@ class TrackTest {
         val event = Talk(name, Minutes(duration))
         val track = Track(1)
         track.morning.arrange(event)
-        Assertions.assertEquals(track.morning.restLength, 120)
+        Assertions.assertEquals(track.morning.unassignedTimeLength, 120)
     }
 
     @Test
@@ -28,7 +28,7 @@ class TrackTest {
         val event = Talk(name, Minutes(duration))
         val track = Track(1)
         track.afternoon.arrange(event)
-        Assertions.assertEquals(track.afternoon.restLength, 180)
+        Assertions.assertEquals(track.afternoon.unassignedTimeLength, 180)
     }
     @Test
     fun `should be different if the id of the track is different`() {

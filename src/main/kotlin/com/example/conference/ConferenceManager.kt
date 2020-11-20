@@ -9,14 +9,39 @@ import com.example.conference.events.Talk.Companion.rankTalks
 import com.example.conference.events.Talk.Companion.transferStringToTalk
 import com.example.conference.slots.Slot
 import com.example.conference.slots.Slot.Companion.rankSlots
+import java.io.File
+import java.io.InputStream
 import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class ConferenceManager {
-    fun arrangeConference(input: MutableList<String>): MutableList<Track> {
-        val inputTalks = transferStringListToTalkList(input)
-        return arrangeConferenceWithNTracks(inputTalks, Constant.ONE_MORE_TRACK)
+
+    fun arrangeConference() {
+        val inputTalks = transferStringListToTalkList(read())
+        output(arrangeConferenceWithNTracks(inputTalks, Constant.ONE_MORE_TRACK))
     }
 
+    fun read(): MutableList<String> {
+        val inputStream: InputStream = File(Constant.INPUT_FILE_PATH).inputStream()
+        val talkListString = mutableListOf<String>()
+        inputStream.bufferedReader().forEachLine { talkListString.add(it) }
+        return talkListString
+    }
+
+    fun output(tracks: MutableList<Track>) {
+        tracks.forEach { track ->
+            println(track.toString())
+            for (index in 0 until track.morning.events.size) {
+                print(track.morning.addedTime[index].format(DateTimeFormatter.ofPattern("hh:mma ", Locale.ENGLISH)))
+                println(track.morning.events[index].toString())
+            }
+            for (index in 0 until track.afternoon.events.size) {
+                print(track.afternoon.addedTime[index].format(DateTimeFormatter.ofPattern("hh:mma ", Locale.ENGLISH)))
+                println(track.afternoon.events[index].toString())
+            }
+        }
+    }
     fun transferStringListToTalkList(input: MutableList<String>): MutableList<Talk> {
         val talkList = mutableListOf<Talk>()
         input.stream().forEach { talkList.add(transferStringToTalk(it)) }
