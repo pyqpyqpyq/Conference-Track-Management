@@ -25,4 +25,10 @@ abstract class Slot {
     fun getEvent(Id: Int): Event {
         return events[Id]
     }
+    companion object {
+        fun rankSlots(inputList: MutableList<Slot>): MutableList<Slot> {
+            inputList.sortByDescending { it.restLength }
+            return inputList
+        }
+    }
 }
