@@ -1,7 +1,7 @@
 package com.example.conference.events
 
 import com.example.conference.Track
-import java.time.LocalTime
+import com.example.conference.constants.Constant
 
 class NetworkEvent : Event() {
     val name = "Networking Event"
@@ -13,7 +13,7 @@ class NetworkEvent : Event() {
             tracks.forEach { track ->
                 track.afternoon.events.add(NetworkEvent())
                 track.afternoon.addedTime.removeLast()
-                track.afternoon.addedTime.add(LocalTime.of(17, 0))
+                track.afternoon.addedTime.add(Constant.NETWORK_EVENT_TIME)
             }
             return tracks
         }

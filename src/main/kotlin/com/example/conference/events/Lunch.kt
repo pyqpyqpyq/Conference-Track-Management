@@ -1,8 +1,8 @@
 package com.example.conference.events
 
 import com.example.conference.Track
+import com.example.conference.constants.Constant
 import com.example.conference.durations.Minutes
-import java.time.LocalTime
 
 class Lunch : Event() {
     val name = "Lunch"
@@ -15,7 +15,7 @@ class Lunch : Event() {
             tracks.forEach { track ->
                 track.morning.events.add(Lunch())
                 track.morning.addedTime.removeLast()
-                track.morning.addedTime.add(LocalTime.of(12, 0))
+                track.morning.addedTime.add(Constant.LUNCH_TIME)
             }
             return tracks
         }

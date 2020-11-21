@@ -1,5 +1,7 @@
 package com.example.conference.constants
 
+import java.time.LocalTime
+
 class Constant {
     companion object {
         const val ONE_MORE_TRACK = 1
@@ -10,5 +12,7 @@ class Constant {
         const val LAST_PART_REPRESENT_DURATION = 1
         const val INPUT_FILE_PATH = "src/main/resources/input.txt"
         const val INPUT_VALIDATED = ".*(lightning|([1-9][0-9]*)min)\$"
+        val LUNCH_TIME = LocalTime.of(12, 0)
+        val NETWORK_EVENT_TIME = LocalTime.of(17, 0)
     }
 }

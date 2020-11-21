@@ -17,7 +17,7 @@ class ConferenceManagerTest {
     @Test
     fun `should be able to read the file as input`() {
         val conferenceManager = ConferenceManager()
-        conferenceManager.readFromFile().forEach { println(it) }
+        conferenceManager.readInput().forEach { println(it) }
     }
     @Test
     fun `should be able to transfer StringList to the TalkList`() {
@@ -108,7 +108,7 @@ class ConferenceManagerTest {
         val talks2 = mutableListOf<Talk>()
         talks1.add(transferStringToTalk(string1))
         talks2.add(transferStringToTalk(string1))
-        conference.arrangeConferenceWithNTracks(talks1, 1)
+        conference.arrangeTalks(talks1, 1)
         Assertions.assertEquals(talks1.size, talks2.size)
     }
     @Test
@@ -117,12 +117,12 @@ class ConferenceManagerTest {
         val string = "Communicating Over Distance 60min"
         val talks = mutableListOf<Talk>()
         repeat(50) { talks.add(transferStringToTalk(string)) }
-        Assertions.assertEquals(conference.arrangeConferenceWithNTracks(talks, 1).size, 8)
+        Assertions.assertEquals(conference.arrangeTalks(talks, 1).size, 8)
     }
     @Test
     fun `conferenceManager's method of arrangeConference can accept input of string and transfer string to talks and arrange talks then output the arranged tracks`() {
         val conference = ConferenceManager()
-        conference.arrangeConference()
+        conference.manageConference()
     }
     @Test
     fun `should be able to output the result`() {
@@ -131,8 +131,8 @@ class ConferenceManagerTest {
         val string = "Communicating Over Distance 60min"
         val talks = mutableListOf<Talk>()
         repeat(50) { talks.add(transferStringToTalk(string)) }
-        val result = conference.arrangeConferenceWithNTracks(talks, 1)
-        conferenceManager.outputToConsole(result)
+        val result = conference.arrangeTalks(talks, 1)
+        conferenceManager.printResult(result)
     }
     @Test
     fun `should be able to return "Invalid input please check again" if the invalid input`() {

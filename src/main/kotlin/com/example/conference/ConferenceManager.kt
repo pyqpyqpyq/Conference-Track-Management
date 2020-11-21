@@ -17,14 +17,14 @@ import java.util.regex.Pattern
 
 class ConferenceManager {
 
-    fun arrangeConference() {
-        val inputString = readFromFile()
+    fun manageConference() {
+        val inputString = readInput()
         if (validate(inputString)) {
             val inputTalks = transferStringListToTalkList(inputString)
-            outputToConsole(arrangeConferenceWithNTracks(inputTalks, Constant.ONE_MORE_TRACK))
+            printResult(arrangeTalks(inputTalks, Constant.ONE_MORE_TRACK))
         }
     }
-    fun readFromFile(): MutableList<String> {
+    fun readInput(): MutableList<String> {
         val bufferedReader = BufferedReader(FileReader(File(Constant.INPUT_FILE_PATH)))
         val talkListString = mutableListOf<String>()
         bufferedReader.forEachLine { talkListString.add(it) }
@@ -36,20 +36,20 @@ class ConferenceManager {
         }
         return true
     }
-    fun arrangeConferenceWithNTracks(talks: MutableList<Talk>, n: Int): MutableList<Track> {
+    fun arrangeTalks(talks: MutableList<Talk>, n: Int): MutableList<Track> {
         val tracks = mutableListOf<Track>()
         repeat(n) { addOneMoreTrack(tracks) }
         val copyTalks = mutableListOf<Talk>().apply { addAll(talks) }
         while (copyTalks.isNotEmpty()) {
             if (!arrangeOneTalk(copyTalks, getAllSlotsByOrder(tracks))) {
-                return arrangeConferenceWithNTracks(talks, n + Constant.ONE_MORE_TRACK)
+                return arrangeTalks(talks, n + Constant.ONE_MORE_TRACK)
             }
         }
         arrangeLunch(tracks)
         arrangeNetworkEvent(tracks)
         return tracks
     }
-    fun outputToConsole(tracks: MutableList<Track>) {
+    fun printResult(tracks: MutableList<Track>) {
         tracks.forEach { track ->
             println(track.toString())
             for (index in 0 until track.morning.events.size) {
