@@ -19,7 +19,7 @@ class ConferenceManager {
 
     fun arrangeConference() {
         val inputString = readFromFile()
-        if (!validateInput(inputString)) { print("Invalid input please check again") } else {
+        if (validate(inputString)) {
             val inputTalks = transferStringListToTalkList(inputString)
             outputToConsole(arrangeConferenceWithNTracks(inputTalks, Constant.ONE_MORE_TRACK))
         }
@@ -30,7 +30,14 @@ class ConferenceManager {
         bufferedReader.forEachLine { talkListString.add(it) }
         return talkListString
     }
-
+    fun validate(inputString: MutableList<String>): Boolean {
+        return if (!validateInput(inputString)) {
+            print("Invalid input please check again")
+            false
+        } else {
+            true
+        }
+    }
     fun arrangeConferenceWithNTracks(talks: MutableList<Talk>, n: Int): MutableList<Track> {
         val tracks = mutableListOf<Track>()
         repeat(n) { addTrack(tracks) }

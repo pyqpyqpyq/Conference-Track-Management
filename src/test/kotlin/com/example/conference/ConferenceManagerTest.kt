@@ -152,4 +152,12 @@ class ConferenceManagerTest {
         val result = conference.arrangeConferenceWithNTracks(talks, 1)
         conferenceManager.outputToConsole(result)
     }
+    @Test
+    fun `should be able to return "Invalid input please check again" if the invalid input`() {
+        val conferenceManager = ConferenceManager()
+        val string = "Communicating Over Distance 60min invalid"
+        val talks = mutableListOf<String>()
+        talks.add(string)
+        conferenceManager.validate(talks)
+    }
 }
