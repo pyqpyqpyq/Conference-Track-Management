@@ -7,8 +7,8 @@ plugins {
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
     kotlin("jvm") version "1.4.10"
     kotlin("plugin.spring") version "1.4.10"
-}
 
+}
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
@@ -29,6 +29,10 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 
+application {
+    mainClass.set("com.example.conference.ConferenceApplicationKt")
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
@@ -39,20 +43,31 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "1.8"
     }
 }
+tasks.withType<JavaExec> {
+    standardInput = System.`in`
+}
 
 jacoco {
     toolVersion = "0.8.5"
     reportsDir = file("$buildDir/customJacocoReportDir")
 }
+
 tasks.jacocoTestReport {
     reports {
         xml.isEnabled = false
         csv.isEnabled = false
         html.destination = file("${buildDir}/jacocoHtml")
     }
+    classDirectories.setFrom(
+        sourceSets.main.get().output.asFileTree.matching {
+            // exclude main()
+            exclude("**/ConferenceApplication*")
+        }
+    )
 
     dependsOn(tasks.test)
 }
+
 tasks.jacocoTestCoverageVerification {
     executionData(tasks["test"])
     violationRules {
@@ -70,6 +85,12 @@ tasks.jacocoTestCoverageVerification {
             }
         }
     }
+    classDirectories.setFrom(
+        sourceSets.main.get().output.asFileTree.matching {
+            // exclude main()
+            exclude("**/ConferenceApplication*")
+        }
+    )
 
     shouldRunAfter(tasks.jacocoTestReport)
 }
