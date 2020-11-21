@@ -1,7 +1,7 @@
 package com.example.conference.events
 
+import com.example.conference.ConferenceManager
 import com.example.conference.durations.Minutes
-import com.example.conference.events.Talk.Companion.validateInput
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -66,16 +66,18 @@ class EventTest {
     }
     @Test
     fun `should be able to return false if the input is not valid`() {
+        val conferenceManager = ConferenceManager()
         val name = "Writing Fast Tests Against Enterprise Rails"
         val nameList = mutableListOf<String>()
         nameList.add(name)
-        Assertions.assertEquals(validateInput(nameList), false)
+        Assertions.assertEquals(conferenceManager.validate(nameList), false)
     }
     @Test
     fun `should be able to return true if the input is valid`() {
+        val conferenceManager = ConferenceManager()
         val name = "Writing Fast Tests Against Enterprise Rails 60min"
         val nameList = mutableListOf<String>()
         nameList.add(name)
-        Assertions.assertEquals(validateInput(nameList), true)
+        Assertions.assertEquals(conferenceManager.validate(nameList), true)
     }
 }

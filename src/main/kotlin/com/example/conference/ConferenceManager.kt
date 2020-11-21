@@ -7,13 +7,13 @@ import com.example.conference.events.Lunch.Companion.arrangeLunch
 import com.example.conference.events.NetworkEvent.Companion.arrangeNetworkEvent
 import com.example.conference.events.Talk
 import com.example.conference.events.Talk.Companion.transferStringListToTalkList
-import com.example.conference.events.Talk.Companion.validateInput
 import com.example.conference.slots.Slot.Companion.arrangeOneTalk
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
 import java.time.format.DateTimeFormatter
 import java.util.Locale
+import java.util.regex.Pattern
 
 class ConferenceManager {
 
@@ -31,12 +31,10 @@ class ConferenceManager {
         return talkListString
     }
     fun validate(inputString: MutableList<String>): Boolean {
-        return if (!validateInput(inputString)) {
-            print("Invalid input please check again")
-            false
-        } else {
-            true
+        for (index in 0 until inputString.size) {
+            if (!Pattern.matches(Constant.INPUT_VALIDATED, inputString[index])) { return false }
         }
+        return true
     }
     fun arrangeConferenceWithNTracks(talks: MutableList<Talk>, n: Int): MutableList<Track> {
         val tracks = mutableListOf<Track>()
