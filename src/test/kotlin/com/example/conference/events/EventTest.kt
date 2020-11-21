@@ -1,6 +1,7 @@
 package com.example.conference.events
 
 import com.example.conference.durations.Minutes
+import com.example.conference.events.Talk.Companion.validateInput
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -22,6 +23,7 @@ class EventTest {
         val talk2 = Talk(name2, Minutes(duration2))
         Assertions.assertNotEquals(talk1, talk2)
     }
+
     @Test
     fun `two Talk with same name but not different length should not be equal `() {
         val name1 = "Writing Fast Tests Against Enterprise Rails"
@@ -71,5 +73,12 @@ class EventTest {
         val duration = Minutes(60)
         val event = Talk(name, duration)
         Assertions.assertEquals(event.toString(), "Writing Fast Tests Against Enterprise Rails 60min")
+    }
+    @Test
+    fun `should be able to return false if the input is not valid`() {
+        val name = "Writing Fast Tests Against Enterprise Rails"
+        val nameList = mutableListOf<String>()
+        nameList.add(name)
+        Assertions.assertEquals(validateInput(), false)
     }
 }

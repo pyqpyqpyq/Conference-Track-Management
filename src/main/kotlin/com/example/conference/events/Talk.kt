@@ -15,6 +15,9 @@ class Talk(val name: String, val duration: Duration) : Event() {
         }
     }
     companion object {
+        fun validateInput(): Boolean {
+            return false
+        }
         fun transferStringToTalk(string: String): Talk {
             val wordList = string.split(' ')
             val name = wordList.subList(0, wordList.size - Constant.LAST_PART_REPRESENT_DURATION).joinToString(" ")
@@ -24,6 +27,11 @@ class Talk(val name: String, val duration: Duration) : Event() {
         fun rankTalks(inputList: MutableList<Talk>): MutableList<Talk> {
             inputList.sortByDescending { it.duration.toMinutes() }
             return inputList
+        }
+        fun transferStringListToTalkList(input: MutableList<String>): MutableList<Talk> {
+            val talkList = mutableListOf<Talk>()
+            input.stream().forEach { talkList.add(transferStringToTalk(it)) }
+            return talkList
         }
     }
 }

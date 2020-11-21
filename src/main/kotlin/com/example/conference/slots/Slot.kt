@@ -30,5 +30,14 @@ abstract class Slot {
             inputList.sortByDescending { it.unassignedTimeLength }
             return inputList
         }
+        fun arrangeOneTalk(talks: MutableList<Talk>, slots: MutableList<Slot>): Boolean {
+            Talk.rankTalks(talks)
+            return if (slots[0].arrange(talks[0])!!) {
+                talks.removeAt(0)
+                true
+            } else {
+                false
+            }
+        }
     }
 }

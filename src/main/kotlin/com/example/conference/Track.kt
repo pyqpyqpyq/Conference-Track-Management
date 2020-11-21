@@ -34,5 +34,13 @@ class Track(val id: Int) {
             }
             return availableSlots
         }
+        fun getAllSlotsByOrder(tracks: MutableList<Track>): MutableList<Slot> {
+            val availableSlots = mutableListOf<Slot>()
+            for (anyTrack in tracks) {
+                availableSlots.add(anyTrack.morning)
+                availableSlots.add(anyTrack.afternoon)
+            }
+            return Slot.rankSlots(availableSlots)
+        }
     }
 }
