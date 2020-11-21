@@ -8,12 +8,12 @@ import com.example.conference.events.NetworkEvent.Companion.arrangeNetworkEvent
 import com.example.conference.events.Talk
 import com.example.conference.events.Talk.Companion.transferStringListToTalkList
 import com.example.conference.slots.Slot.Companion.arrangeOneTalk
+import com.example.conference.utils.ValidateUtil.Companion.validate
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
 import java.time.format.DateTimeFormatter
 import java.util.Locale
-import java.util.regex.Pattern
 
 class ConferenceManager {
 
@@ -29,26 +29,6 @@ class ConferenceManager {
         val talkListString = mutableListOf<String>()
         bufferedReader.forEachLine { talkListString.add(it) }
         return talkListString
-    }
-
-    // TODO
-    fun validate(inputString: MutableList<String>): Boolean {
-        inputString.forEach {
-            // check if the string end with time
-            if (!Pattern.matches(Constant.RGX_END_WITH_TIME, it)) {
-                println(Constant.INVALID_INPUT)
-                return false
-            }
-            // check if the string name contain digits
-            val name = it.split(' ')
-                .subList(0, it.split(' ').size - Constant.LAST_PART_REPRESENT_DURATION)
-                .joinToString(" ")
-            if (Pattern.matches(Constant.RGX_IF_CONTAIN_DIGIT, name)) {
-                println(Constant.INVALID_INPUT)
-                return false
-            }
-        }
-        return true
     }
 
     fun arrangeTalks(talks: MutableList<Talk>, n: Int): MutableList<Track> {

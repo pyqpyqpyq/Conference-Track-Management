@@ -137,36 +137,4 @@ class ConferenceManagerTest {
         val result = conference.arrangeTalks(talks, 1)
         conferenceManager.printResult(result)
     }
-    @Test
-    fun `should be able to return "Invalid input please check again" if the invalid input`() {
-        val conferenceManager = ConferenceManager()
-        val string = "Communicating Over Distance 60min invalid"
-        val talks = mutableListOf<String>()
-        talks.add(string)
-        conferenceManager.validate(talks)
-    }
-    @Test
-    fun `should be classified to be in invalidate string with digits in the name`() {
-        val conferenceManager = ConferenceManager()
-        val string = "Communicating3 Over Distance 60min"
-        val talks = mutableListOf<String>()
-        talks.add(string)
-        assertEquals(conferenceManager.validate(talks), false)
-    }
-    @Test
-    fun `should be classified to be invalidate not end with time`() {
-        val conferenceManager = ConferenceManager()
-        val string = "Communicating Over Distance 60min day"
-        val talks = mutableListOf<String>()
-        talks.add(string)
-        assertEquals(conferenceManager.validate(talks), false)
-    }
-    @Test
-    fun `should be classified to be validate if both name without digits and end with time`() {
-        val conferenceManager = ConferenceManager()
-        val string = "Communicating Over Distance 60min"
-        val talks = mutableListOf<String>()
-        talks.add(string)
-        assertEquals(conferenceManager.validate(talks), true)
-    }
 }

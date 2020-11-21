@@ -1,6 +1,5 @@
 package com.example.conference.events
 
-import com.example.conference.ConferenceManager
 import com.example.conference.durations.Minutes
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
@@ -65,21 +64,5 @@ class EventTest {
         val duration = Minutes(60)
         val event = Talk(name, duration)
         assertEquals(event.toString(), "Writing Fast Tests Against Enterprise Rails 60min")
-    }
-    @Test
-    fun `should be able to return false if the input is not valid`() {
-        val conferenceManager = ConferenceManager()
-        val name = "Writing Fast Tests Against Enterprise Rails"
-        val nameList = mutableListOf<String>()
-        nameList.add(name)
-        assertEquals(conferenceManager.validate(nameList), false)
-    }
-    @Test
-    fun `should be able to return true if the input is valid`() {
-        val conferenceManager = ConferenceManager()
-        val name = "Writing Fast Tests Against Enterprise Rails 60min"
-        val nameList = mutableListOf<String>()
-        nameList.add(name)
-        assertEquals(conferenceManager.validate(nameList), true)
     }
 }

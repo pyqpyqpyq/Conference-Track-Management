@@ -11,7 +11,7 @@ abstract class Slot(val startTime: LocalTime, var unassignedTimeLength: Int) {
 
     fun arrange(talk: Talk): Boolean? {
         return if (talk.duration.toMinutes() <= unassignedTimeLength) {
-            unassignedTimeLength -= talk.duration.toMinutes()
+            this.unassignedTimeLength -= talk.duration.toMinutes()
             events.add(talk)
             addedTime.add(addedTime.last().plusMinutes(talk.duration.toMinutes().toLong()))
             true
