@@ -1,9 +1,7 @@
 package com.example.conference
 
-import com.example.conference.Track.Companion.addTrack
-import com.example.conference.Track.Companion.getAllSlots
+import com.example.conference.Track.Companion.addOneMoreTrack
 import com.example.conference.Track.Companion.getAllSlotsByOrder
-import com.example.conference.Track.Companion.getTrack
 import com.example.conference.durations.Minutes
 import com.example.conference.events.Talk
 import com.example.conference.events.Talk.Companion.transferStringListToTalkList
@@ -32,8 +30,8 @@ class ConferenceManagerTest {
     @Test
     fun `should init a track when the conference is created`() {
         val tracks = mutableListOf<Track>()
-        addTrack(tracks)
-        Assertions.assertNotNull(getTrack(tracks, 1))
+        addOneMoreTrack(tracks)
+        Assertions.assertNotNull(tracks)
     }
     @Test
     fun `should be able to rank the list of slots by their length in descending, so the shortest event should be in the last`() {
@@ -49,34 +47,24 @@ class ConferenceManagerTest {
         Assertions.assertEquals(slotList[2], morning1)
     }
     @Test
-    fun `should be able to get all the slots of the conference`() {
-        val tracks = mutableListOf<Track>()
-        addTrack(tracks)
-        Assertions.assertEquals(getAllSlots(tracks).size, 2)
-        Assertions.assertEquals(getAllSlots(tracks)[0], getTrack(tracks, 1).morning)
-        Assertions.assertEquals(getAllSlots(tracks)[1], getTrack(tracks, 1).afternoon)
-        addTrack(tracks)
-        Assertions.assertEquals(getAllSlots(tracks).size, 4)
-    }
-    @Test
     fun `should be able to get all the slots of the conference in Descending rate`() {
         val tracks = mutableListOf<Track>()
-        addTrack(tracks)
-        addTrack(tracks)
+        addOneMoreTrack(tracks)
+        addOneMoreTrack(tracks)
         val string1 = "Rails for Python Developers lightning"
         val string2 = "Communicating Over Distance 60min"
-        getTrack(tracks, 1).afternoon.arrange(transferStringToTalk(string1))
-        getTrack(tracks, 1).morning.arrange(transferStringToTalk(string2))
+        tracks[0].afternoon.arrange(transferStringToTalk(string1))
+        tracks[1].morning.arrange(transferStringToTalk(string2))
         val returnList = rankSlots(getAllSlotsByOrder(tracks))
-        Assertions.assertEquals(returnList[0], getTrack(tracks, 2).afternoon)
-        Assertions.assertEquals(returnList[1], getTrack(tracks, 1).afternoon)
-        Assertions.assertEquals(returnList[2], getTrack(tracks, 2).morning)
-        Assertions.assertEquals(returnList[3], getTrack(tracks, 1).morning)
+        Assertions.assertEquals(returnList[0], tracks[1].afternoon)
+        Assertions.assertEquals(returnList[1], tracks[0].afternoon)
+        Assertions.assertEquals(returnList[2], tracks[0].morning)
+        Assertions.assertEquals(returnList[3], tracks[1].morning)
     }
     @Test
     fun `should be able to put the first event to the first lots`() {
         val tracks = mutableListOf<Track>()
-        addTrack(tracks)
+        addOneMoreTrack(tracks)
         val string1 = "Rails for Python Developers lightning"
         val string2 = "Communicating Over Distance 60min"
         val talks = mutableListOf<Talk>()
@@ -84,13 +72,13 @@ class ConferenceManagerTest {
         talks.add(transferStringToTalk(string2))
         getAllSlotsByOrder(tracks)
         arrangeOneTalk(talks, getAllSlotsByOrder(tracks))
-        Assertions.assertNotNull(getTrack(tracks, 1).afternoon)
+        Assertions.assertNotNull(tracks[0].afternoon)
         Assertions.assertEquals(talks.size, 1)
     }
     @Test
     fun `should be able to put the first event to the first lots if successful return true`() {
         val tracks = mutableListOf<Track>()
-        addTrack(tracks)
+        addOneMoreTrack(tracks)
         val string1 = "Rails for Python Developers lightning"
         val string2 = "Communicating Over Distance 60min"
         val talks = mutableListOf<Talk>()
@@ -102,7 +90,7 @@ class ConferenceManagerTest {
     @Test
     fun `should be able to put the first event to the first lots if unsuccessful return false`() {
         val tracks = mutableListOf<Track>()
-        addTrack(tracks)
+        addOneMoreTrack(tracks)
         val string1 = "Rails for Python Developers lightning"
         val string2 = "Communicating Over Distance"
         val duration = Minutes(Int.MAX_VALUE)

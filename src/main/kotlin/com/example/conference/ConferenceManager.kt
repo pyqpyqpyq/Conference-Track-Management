@@ -1,6 +1,6 @@
 package com.example.conference
 
-import com.example.conference.Track.Companion.addTrack
+import com.example.conference.Track.Companion.addOneMoreTrack
 import com.example.conference.Track.Companion.getAllSlotsByOrder
 import com.example.conference.constants.Constant
 import com.example.conference.events.Lunch.Companion.arrangeLunch
@@ -40,7 +40,7 @@ class ConferenceManager {
     }
     fun arrangeConferenceWithNTracks(talks: MutableList<Talk>, n: Int): MutableList<Track> {
         val tracks = mutableListOf<Track>()
-        repeat(n) { addTrack(tracks) }
+        repeat(n) { addOneMoreTrack(tracks) }
         val copyTalks = mutableListOf<Talk>().apply { addAll(talks) }
         while (copyTalks.isNotEmpty()) {
             if (!arrangeOneTalk(copyTalks, getAllSlotsByOrder(tracks))) {

@@ -12,20 +12,8 @@ class Track(val id: Int) {
         return "Track $id:"
     }
     companion object {
-        fun addTrack(tracks: MutableList<Track>) {
-            tracks.add(Track(tracks.size + Constant.HUMAN_COMPUTER_DISTANCE))
-        }
-        fun getTrack(tracks: MutableList<Track>, id: Int): Track {
-            return tracks[id - Constant.HUMAN_COMPUTER_DISTANCE]
-        }
-
-        fun getAllSlots(tracks: MutableList<Track>): MutableList<Slot> {
-            val availableSlots = mutableListOf<Slot>()
-            for (anyTrack in tracks) {
-                availableSlots.add(anyTrack.morning)
-                availableSlots.add(anyTrack.afternoon)
-            }
-            return availableSlots
+        fun addOneMoreTrack(tracks: MutableList<Track>) {
+            tracks.add(Track(tracks.size + Constant.ONE_MORE_TRACK))
         }
         fun getAllSlotsByOrder(tracks: MutableList<Track>): MutableList<Slot> {
             val availableSlots = mutableListOf<Slot>()
