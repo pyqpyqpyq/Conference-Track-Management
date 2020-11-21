@@ -79,6 +79,13 @@ class EventTest {
         val name = "Writing Fast Tests Against Enterprise Rails"
         val nameList = mutableListOf<String>()
         nameList.add(name)
-        Assertions.assertEquals(validateInput(), false)
+        Assertions.assertEquals(validateInput(nameList), false)
+    }
+    @Test
+    fun `should be able to return true if the input is valid`() {
+        val name = "Writing Fast Tests Against Enterprise Rails 60min"
+        val nameList = mutableListOf<String>()
+        nameList.add(name)
+        Assertions.assertEquals(validateInput(nameList), true)
     }
 }

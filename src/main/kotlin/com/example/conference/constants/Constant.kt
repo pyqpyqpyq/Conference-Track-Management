@@ -9,5 +9,6 @@ class Constant {
         const val HUMAN_COMPUTER_DISTANCE = 1
         const val LAST_PART_REPRESENT_DURATION = 1
         const val INPUT_FILE_PATH = "src/main/resources/input.txt"
+        const val INPUT_VALIDATED = ".*(lightning|([1-9][0-9]*)min)\$"
     }
 }
