@@ -9,8 +9,9 @@ import com.example.conference.events.Talk
 import com.example.conference.events.Talk.Companion.transferStringListToTalkList
 import com.example.conference.events.Talk.Companion.validateInput
 import com.example.conference.slots.Slot.Companion.arrangeOneTalk
+import java.io.BufferedReader
 import java.io.File
-import java.io.InputStream
+import java.io.FileReader
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
@@ -24,9 +25,9 @@ class ConferenceManager {
         }
     }
     fun readFromFile(): MutableList<String> {
-        val inputStream: InputStream = File(Constant.INPUT_FILE_PATH).inputStream()
+        val bufferedReader = BufferedReader(FileReader(File(Constant.INPUT_FILE_PATH)))
         val talkListString = mutableListOf<String>()
-        inputStream.bufferedReader().forEachLine { talkListString.add(it) }
+        bufferedReader.forEachLine { talkListString.add(it) }
         return talkListString
     }
 
