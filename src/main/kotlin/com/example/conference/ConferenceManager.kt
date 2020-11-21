@@ -34,13 +34,13 @@ class ConferenceManager {
         for (index in 0 until inputString.size) {
             // check if the string end with time
             if (!Pattern.matches(Constant.RGX_END_WITH_TIME, inputString[index])) {
-                print("Invalid Input Please Check, And Try Again!")
+                println(Constant.INVALID_INPUT)
                 return false
             }
             // check if the string name contain digits
             val name = inputString[index].split(' ').subList(0, inputString[index].split(' ').size - Constant.LAST_PART_REPRESENT_DURATION).joinToString(" ")
             if (Pattern.matches(Constant.RGX_IF_CONTAIN_DIGIT, name)) {
-                print("Invalid Input Please Check, And Try Again!")
+                println(Constant.INVALID_INPUT)
                 return false
             }
         }
