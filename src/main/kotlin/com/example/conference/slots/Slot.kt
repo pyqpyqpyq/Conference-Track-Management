@@ -4,9 +4,7 @@ import com.example.conference.events.Event
 import com.example.conference.events.Talk
 import java.time.LocalTime
 
-abstract class Slot {
-    abstract val startTime: LocalTime
-    abstract var unassignedTimeLength: Int
+abstract class Slot(val startTime: LocalTime, var unassignedTimeLength: Int) {
 
     val addedTime = mutableListOf<LocalTime>()
     var events = mutableListOf<Event>()

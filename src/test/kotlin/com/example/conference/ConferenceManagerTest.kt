@@ -10,7 +10,8 @@ import com.example.conference.slots.Afternoon
 import com.example.conference.slots.Morning
 import com.example.conference.slots.Slot.Companion.arrangeOneTalk
 import com.example.conference.slots.Slot.Companion.rankSlots
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 
 class ConferenceManagerTest {
@@ -21,17 +22,19 @@ class ConferenceManagerTest {
     }
     @Test
     fun `should be able to transfer StringList to the TalkList`() {
-        val string = "Writing Fast Tests Against Enterprise Rails 60min"
-        val stringList = mutableListOf<String>()
-        val talkList = mutableListOf<Talk>()
-        repeat(5) { stringList.add(string) }
-        Assertions.assertEquals(transferStringListToTalkList(stringList).javaClass, talkList.javaClass)
+        val stringList = mutableListOf("Writing Fast Tests Against Enterprise Rails 60min")
+
+        val talkList = transferStringListToTalkList(stringList)
+
+        assertEquals(1, talkList.size)
+        assertEquals(60, talkList[0].duration.toMinutes())
+        assertEquals("Writing Fast Tests Against Enterprise Rails", talkList[0].name)
     }
     @Test
     fun `should init a track when the conference is created`() {
         val tracks = mutableListOf<Track>()
         addOneMoreTrack(tracks)
-        Assertions.assertNotNull(tracks)
+        assertNotNull(tracks)
     }
     @Test
     fun `should be able to rank the list of slots by their length in descending, so the shortest event should be in the last`() {
@@ -42,9 +45,9 @@ class ConferenceManagerTest {
         val afternoon = Afternoon()
         val slotList = mutableListOf(morning1, morning2, afternoon)
         rankSlots(slotList)
-        Assertions.assertEquals(slotList[0], afternoon)
-        Assertions.assertEquals(slotList[1], morning2)
-        Assertions.assertEquals(slotList[2], morning1)
+        assertEquals(slotList[0], afternoon)
+        assertEquals(slotList[1], morning2)
+        assertEquals(slotList[2], morning1)
     }
     @Test
     fun `should be able to get all the slots of the conference in Descending rate`() {
@@ -56,10 +59,10 @@ class ConferenceManagerTest {
         tracks[0].afternoon.arrange(transferStringToTalk(string1))
         tracks[1].morning.arrange(transferStringToTalk(string2))
         val returnList = rankSlots(getAllSlotsByOrder(tracks))
-        Assertions.assertEquals(returnList[0], tracks[1].afternoon)
-        Assertions.assertEquals(returnList[1], tracks[0].afternoon)
-        Assertions.assertEquals(returnList[2], tracks[0].morning)
-        Assertions.assertEquals(returnList[3], tracks[1].morning)
+        assertEquals(returnList[0], tracks[1].afternoon)
+        assertEquals(returnList[1], tracks[0].afternoon)
+        assertEquals(returnList[2], tracks[0].morning)
+        assertEquals(returnList[3], tracks[1].morning)
     }
     @Test
     fun `should be able to put the first event to the first lots`() {
@@ -72,8 +75,8 @@ class ConferenceManagerTest {
         talks.add(transferStringToTalk(string2))
         getAllSlotsByOrder(tracks)
         arrangeOneTalk(talks, getAllSlotsByOrder(tracks))
-        Assertions.assertNotNull(tracks[0].afternoon)
-        Assertions.assertEquals(talks.size, 1)
+        assertNotNull(tracks[0].afternoon)
+        assertEquals(talks.size, 1)
     }
     @Test
     fun `should be able to put the first event to the first lots if successful return true`() {
@@ -85,7 +88,7 @@ class ConferenceManagerTest {
         talks.add(transferStringToTalk(string1))
         talks.add(transferStringToTalk(string2))
         getAllSlotsByOrder(tracks)
-        Assertions.assertEquals(arrangeOneTalk(talks, getAllSlotsByOrder(tracks)), true)
+        assertEquals(arrangeOneTalk(talks, getAllSlotsByOrder(tracks)), true)
     }
     @Test
     fun `should be able to put the first event to the first lots if unsuccessful return false`() {
@@ -98,7 +101,7 @@ class ConferenceManagerTest {
         talks.add(transferStringToTalk(string1))
         talks.add(Talk(string2, duration))
         getAllSlotsByOrder(tracks)
-        Assertions.assertEquals(arrangeOneTalk(talks, getAllSlotsByOrder(tracks)), false)
+        assertEquals(arrangeOneTalk(talks, getAllSlotsByOrder(tracks)), false)
     }
     @Test
     fun `if conferenceManager arrange should copy a input and origin input talks should be unmodified`() {
@@ -109,7 +112,7 @@ class ConferenceManagerTest {
         talks1.add(transferStringToTalk(string1))
         talks2.add(transferStringToTalk(string1))
         conference.arrangeTalks(talks1, 1)
-        Assertions.assertEquals(talks1.size, talks2.size)
+        assertEquals(talks1.size, talks2.size)
     }
     @Test
     fun `if conferenceManager arrange the talks at current tracks successful it should return the list of Track as the result output`() {
@@ -117,7 +120,7 @@ class ConferenceManagerTest {
         val string = "Communicating Over Distance 60min"
         val talks = mutableListOf<Talk>()
         repeat(50) { talks.add(transferStringToTalk(string)) }
-        Assertions.assertEquals(conference.arrangeTalks(talks, 1).size, 8)
+        assertEquals(conference.arrangeTalks(talks, 1).size, 8)
     }
     @Test
     fun `conferenceManager's method of arrangeConference can accept input of string and transfer string to talks and arrange talks then output the arranged tracks`() {
@@ -148,7 +151,7 @@ class ConferenceManagerTest {
         val string = "Communicating3 Over Distance 60min"
         val talks = mutableListOf<String>()
         talks.add(string)
-        Assertions.assertEquals(conferenceManager.validate(talks), false)
+        assertEquals(conferenceManager.validate(talks), false)
     }
     @Test
     fun `should be classified to be invalidate not end with time`() {
@@ -156,7 +159,7 @@ class ConferenceManagerTest {
         val string = "Communicating Over Distance 60min day"
         val talks = mutableListOf<String>()
         talks.add(string)
-        Assertions.assertEquals(conferenceManager.validate(talks), false)
+        assertEquals(conferenceManager.validate(talks), false)
     }
     @Test
     fun `should be classified to be validate if both name without digits and end with time`() {
@@ -164,6 +167,6 @@ class ConferenceManagerTest {
         val string = "Communicating Over Distance 60min"
         val talks = mutableListOf<String>()
         talks.add(string)
-        Assertions.assertEquals(conferenceManager.validate(talks), true)
+        assertEquals(conferenceManager.validate(talks), true)
     }
 }

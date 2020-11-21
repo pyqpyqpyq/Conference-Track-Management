@@ -30,15 +30,19 @@ class ConferenceManager {
         bufferedReader.forEachLine { talkListString.add(it) }
         return talkListString
     }
+
+    // TODO
     fun validate(inputString: MutableList<String>): Boolean {
-        for (index in 0 until inputString.size) {
+        inputString.forEach {
             // check if the string end with time
-            if (!Pattern.matches(Constant.RGX_END_WITH_TIME, inputString[index])) {
+            if (!Pattern.matches(Constant.RGX_END_WITH_TIME, it)) {
                 println(Constant.INVALID_INPUT)
                 return false
             }
             // check if the string name contain digits
-            val name = inputString[index].split(' ').subList(0, inputString[index].split(' ').size - Constant.LAST_PART_REPRESENT_DURATION).joinToString(" ")
+            val name = it.split(' ')
+                .subList(0, it.split(' ').size - Constant.LAST_PART_REPRESENT_DURATION)
+                .joinToString(" ")
             if (Pattern.matches(Constant.RGX_IF_CONTAIN_DIGIT, name)) {
                 println(Constant.INVALID_INPUT)
                 return false
@@ -46,6 +50,7 @@ class ConferenceManager {
         }
         return true
     }
+
     fun arrangeTalks(talks: MutableList<Talk>, n: Int): MutableList<Track> {
         val tracks = mutableListOf<Track>()
         repeat(n) { addOneMoreTrack(tracks) }
@@ -59,6 +64,7 @@ class ConferenceManager {
         arrangeNetworkEvent(tracks)
         return tracks
     }
+
     fun printResult(tracks: MutableList<Track>) {
         tracks.forEach { track ->
             println(track.toString())

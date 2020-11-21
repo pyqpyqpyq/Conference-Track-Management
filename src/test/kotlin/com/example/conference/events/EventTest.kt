@@ -2,14 +2,16 @@ package com.example.conference.events
 
 import com.example.conference.ConferenceManager
 import com.example.conference.durations.Minutes
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 
 class EventTest {
     @Test
     fun `should be able to transfer legal String to the Talk`() {
         val string = "Writing Fast Tests Against Enterprise Rails 60min"
-        Assertions.assertNotNull(Talk.transferStringToTalk(string))
+        assertNotNull(Talk.transferStringToTalk(string))
     }
     @Test
     fun `two Talk with different name should not be equal `() {
@@ -19,7 +21,7 @@ class EventTest {
         val duration2 = 45
         val talk1 = Talk(name1, Minutes(duration1))
         val talk2 = Talk(name2, Minutes(duration2))
-        Assertions.assertNotEquals(talk1, talk2)
+        assertNotEquals(talk1, talk2)
     }
 
     @Test
@@ -29,40 +31,40 @@ class EventTest {
         val duration2 = 45
         val talk1 = Talk(name1, Minutes(duration1))
         val talk2 = Talk(name1, Minutes(duration2))
-        Assertions.assertNotEquals(talk1, talk2)
+        assertNotEquals(talk1, talk2)
     }
     @Test
     fun `Talk should not be equal to other class`() {
         val name = "Writing Fast Tests Against Enterprise Rails"
         val duration = 60
         val talk1 = Talk(name, Minutes(duration))
-        Assertions.assertNotEquals(talk1, 1)
+        assertNotEquals(talk1, 1)
     }
     @Test
     fun `should create a talk by giving name and the time duration of the event, and can get the name and time duration`() {
         val name = "Writing Fast Tests Against Enterprise Rails"
         val duration = 60
         val event = Talk(name, Minutes(duration))
-        Assertions.assertEquals(event.name, "Writing Fast Tests Against Enterprise Rails")
-        Assertions.assertEquals(event.duration.toMinutes(), 60)
+        assertEquals(event.name, "Writing Fast Tests Against Enterprise Rails")
+        assertEquals(event.duration.toMinutes(), 60)
     }
     @Test
     fun `should create a networkEvent by giving  the time duration of the event, and can get the name and time duration`() {
         val event = NetworkEvent()
-        Assertions.assertEquals(event.name, "Networking Event")
+        assertEquals(event.name, "Networking Event")
     }
     @Test
     fun `should create a lunch time with length of 60 minutes and name is lunch`() {
         val event = Lunch()
-        Assertions.assertEquals(event.name, "Lunch")
-        Assertions.assertEquals(event.duration.toMinutes(), 60)
+        assertEquals(event.name, "Lunch")
+        assertEquals(event.duration.toMinutes(), 60)
     }
     @Test
     fun `should be able to toString to display for the talk`() {
         val name = "Writing Fast Tests Against Enterprise Rails"
         val duration = Minutes(60)
         val event = Talk(name, duration)
-        Assertions.assertEquals(event.toString(), "Writing Fast Tests Against Enterprise Rails 60min")
+        assertEquals(event.toString(), "Writing Fast Tests Against Enterprise Rails 60min")
     }
     @Test
     fun `should be able to return false if the input is not valid`() {
@@ -70,7 +72,7 @@ class EventTest {
         val name = "Writing Fast Tests Against Enterprise Rails"
         val nameList = mutableListOf<String>()
         nameList.add(name)
-        Assertions.assertEquals(conferenceManager.validate(nameList), false)
+        assertEquals(conferenceManager.validate(nameList), false)
     }
     @Test
     fun `should be able to return true if the input is valid`() {
@@ -78,6 +80,6 @@ class EventTest {
         val name = "Writing Fast Tests Against Enterprise Rails 60min"
         val nameList = mutableListOf<String>()
         nameList.add(name)
-        Assertions.assertEquals(conferenceManager.validate(nameList), true)
+        assertEquals(conferenceManager.validate(nameList), true)
     }
 }

@@ -4,12 +4,8 @@ import com.example.conference.Track
 import com.example.conference.constants.Constant
 import com.example.conference.durations.Minutes
 
-class Lunch : Event() {
-    val name = "Lunch"
+class Lunch : Event(name = "Lunch") {
     val duration = Minutes(60)
-    override fun toString(): String {
-        return name
-    }
     companion object {
         fun arrangeLunch(tracks: MutableList<Track>): MutableList<Track> {
             tracks.forEach { track ->

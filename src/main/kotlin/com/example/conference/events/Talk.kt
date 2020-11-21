@@ -4,7 +4,7 @@ import com.example.conference.constants.Constant
 import com.example.conference.durations.Duration
 import com.example.conference.durations.Duration.Companion.transferStringToDuration
 
-class Talk(val name: String, val duration: Duration) : Event() {
+class Talk(name: String, val duration: Duration) : Event(name) {
     override fun toString(): String {
         return "$name $duration"
     }
