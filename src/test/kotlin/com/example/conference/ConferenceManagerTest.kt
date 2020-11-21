@@ -142,4 +142,12 @@ class ConferenceManagerTest {
         talks.add(string)
         conferenceManager.validate(talks)
     }
+    @Test
+    fun `should be classified to be in validate string with number in the name`() {
+        val conferenceManager = ConferenceManager()
+        val string = "Communicating3 Over Distance 60min invalid"
+        val talks = mutableListOf<String>()
+        talks.add(string)
+        Assertions.assertEquals(conferenceManager.validate(talks), false)
+    }
 }

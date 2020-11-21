@@ -11,8 +11,9 @@ class Constant {
         const val HUMAN_COMPUTER_DISTANCE = 1
         const val LAST_PART_REPRESENT_DURATION = 1
         const val INPUT_FILE_PATH = "src/main/resources/input.txt"
-        const val INPUT_VALIDATED = ".*(lightning|([1-9][0-9]*)min)\$"
-        val LUNCH_TIME = LocalTime.of(12, 0)
-        val NETWORK_EVENT_TIME = LocalTime.of(17, 0)
+        const val RGX_END_WITH_TIME = ".*(lightning|([1-9][0-9]*)min)\$"
+        const val RGX_IF_CONTAIN_DIGIT = ".*[0-9]+.*"
+        val LUNCH_TIME: LocalTime = LocalTime.of(12, 0)
+        val NETWORK_EVENT_TIME: LocalTime = LocalTime.of(17, 0)
     }
 }
