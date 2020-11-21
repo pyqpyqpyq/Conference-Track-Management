@@ -7,6 +7,7 @@ import com.example.conference.events.Lunch.Companion.arrangeLunch
 import com.example.conference.events.NetworkEvent.Companion.arrangeNetworkEvent
 import com.example.conference.events.Talk
 import com.example.conference.events.Talk.Companion.transferStringListToTalkList
+import com.example.conference.events.Talk.Companion.validateInput
 import com.example.conference.slots.Slot.Companion.arrangeOneTalk
 import java.io.File
 import java.io.InputStream
@@ -16,8 +17,11 @@ import java.util.Locale
 class ConferenceManager {
 
     fun arrangeConference() {
-        val inputTalks = transferStringListToTalkList(readFromFile())
-        outputToConsole(arrangeConferenceWithNTracks(inputTalks, Constant.ONE_MORE_TRACK))
+        val inputString = readFromFile()
+        if (!validateInput(inputString)) { print("Invalid input please check again") } else {
+            val inputTalks = transferStringListToTalkList(inputString)
+            outputToConsole(arrangeConferenceWithNTracks(inputTalks, Constant.ONE_MORE_TRACK))
+        }
     }
     fun readFromFile(): MutableList<String> {
         val inputStream: InputStream = File(Constant.INPUT_FILE_PATH).inputStream()
