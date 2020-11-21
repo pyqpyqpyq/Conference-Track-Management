@@ -9,12 +9,6 @@ class Talk(val name: String, val duration: Duration) : Event() {
     override fun toString(): String {
         return "$name $duration"
     }
-    override fun equals(other: Any?): Boolean {
-        return when (other) {
-            !is Talk -> false
-            else -> name == other.name && duration == other.duration
-        }
-    }
     companion object {
         fun validateInput(input: MutableList<String>): Boolean {
             for (index in 0 until input.size) {

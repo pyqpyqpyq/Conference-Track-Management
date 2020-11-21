@@ -8,13 +8,6 @@ import com.example.conference.slots.Slot
 class Track(val id: Int) {
     val morning = Morning()
     val afternoon = Afternoon()
-    override fun equals(other: Any?): Boolean {
-        return when (other) {
-            !is Track -> false
-            else ->
-                id == other.id
-        }
-    }
     override fun toString(): String {
         return "Track $id:"
     }
