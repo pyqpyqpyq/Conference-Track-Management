@@ -1,5 +1,9 @@
 package com.example.conference
 
+import com.example.conference.constants.Constant.Companion.CAN_NOT_BE_FOUND_PATH
+import com.example.conference.constants.Constant.Companion.NAME_CONTAIN_DIGIT_FILE_PATH
+import com.example.conference.constants.Constant.Companion.TIME_INVALID_FILE_PATH
+import com.example.conference.constants.Constant.Companion.VALID_INPUT_PATH
 import com.example.conference.durations.Minutes
 import com.example.conference.events.Talk
 import com.example.conference.slots.Afternoon
@@ -82,7 +86,7 @@ class ConferenceManagerTest {
         talks.add(transferStringToTalk(string1))
         talks.add(Talk(string2, duration))
         conferenceManager.getAllSlotsByOrder(tracks)
-        assertEquals(conferenceManager.arrangeOneTalk(talks, conferenceManager.getAllSlotsByOrder(tracks)), false)
+        assertEquals(false, conferenceManager.arrangeOneTalk(talks, conferenceManager.getAllSlotsByOrder(tracks)))
     }
     @Test
     fun `conferenceManager arrange should copy a input and origin input talks should be unmodified`() {
@@ -108,20 +112,31 @@ class ConferenceManagerTest {
     }
     @Test
     fun `should be able to output the result`() {
+        val outContent = ByteArrayOutputStream()
+        System.setOut(PrintStream(outContent))
         val conferenceManager = ConferenceManager()
         val conference = ConferenceManager()
         val string = "Communicating Over Distance 60min"
         val talks = mutableListOf<Talk>()
-        repeat(50) { talks.add(transferStringToTalk(string)) }
+        repeat(5) { talks.add(transferStringToTalk(string)) }
         val result = conference.arrangeEvents(talks, 1)
         conferenceManager.printResult(result)
+        val expectedResult = "Track 1:\n" +
+            "09:00AM Communicating Over Distance 60min\n" +
+            "10:00AM Communicating Over Distance 60min\n" +
+            "12:00PM Lunch\n" +
+            "01:00PM Communicating Over Distance 60min\n" +
+            "02:00PM Communicating Over Distance 60min\n" +
+            "03:00PM Communicating Over Distance 60min\n" +
+            "05:00PM Networking Event\n"
+        assertEquals(expectedResult, outContent.toString())
     }
     @Test
     fun `should print input source can not be found input if can not find file`() {
         val outContent = ByteArrayOutputStream()
         System.setOut(PrintStream(outContent))
         val conferenceManager = ConferenceManager()
-        conferenceManager.manageConference("ssrc/main/resources/input.txt")
+        conferenceManager.manageConference(CAN_NOT_BE_FOUND_PATH)
         assertEquals("Can not find File, Please Check And Try Again!\n", outContent.toString())
     }
     @Test
@@ -129,7 +144,7 @@ class ConferenceManagerTest {
         val outContent = ByteArrayOutputStream()
         System.setOut(PrintStream(outContent))
         val conferenceManager = ConferenceManager()
-        conferenceManager.manageConference("src/main/resources/inputForTest/timeFormatInvalidInput.txt")
+        conferenceManager.manageConference(TIME_INVALID_FILE_PATH)
         assertEquals("Invalid Input For Time Format, Please Check And Try Again!\n", outContent.toString())
     }
     @Test
@@ -137,7 +152,7 @@ class ConferenceManagerTest {
         val outContent = ByteArrayOutputStream()
         System.setOut(PrintStream(outContent))
         val conferenceManager = ConferenceManager()
-        conferenceManager.manageConference("src/main/resources/inputForTest/nameContainDigitInput.txt")
+        conferenceManager.manageConference(NAME_CONTAIN_DIGIT_FILE_PATH)
         assertEquals("Invalid Input Contains Digits In Name, Please Check, And Try Again!\n", outContent.toString())
     }
     @Test
@@ -145,7 +160,7 @@ class ConferenceManagerTest {
         val outContent = ByteArrayOutputStream()
         System.setOut(PrintStream(outContent))
         val conferenceManager = ConferenceManager()
-        conferenceManager.manageConference("src/main/resources/inputForTest/validInput.txt")
+        conferenceManager.manageConference(VALID_INPUT_PATH)
         assertEquals(
             "Track 1:\n" +
                 "09:00AM Rails Magic 60min\n" +

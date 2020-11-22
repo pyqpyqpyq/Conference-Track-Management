@@ -2,8 +2,8 @@ package com.example.conference.events
 
 import com.example.conference.durations.Minutes
 import com.example.conference.events.Talk.Companion.rankTalks
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
 
 class TalkTest {
     @Test
@@ -11,8 +11,8 @@ class TalkTest {
         val name = "Writing Fast Tests Against Enterprise Rails"
         val duration = 60
         val event = Talk(name, Minutes(duration))
-        Assertions.assertEquals(event.name, "Writing Fast Tests Against Enterprise Rails")
-        Assertions.assertEquals(60, event.duration.toMinutes())
+        assertEquals(event.name, "Writing Fast Tests Against Enterprise Rails")
+        assertEquals(60, event.duration.toMinutes())
     }
     @Test
     fun `should order the talks by desc given a list of talks`() {
@@ -24,7 +24,7 @@ class TalkTest {
         val talk2 = Talk(name2, duration2)
         val talkList = mutableListOf(talk1, talk2)
         rankTalks(talkList)
-        Assertions.assertEquals(talk2, talkList[0])
-        Assertions.assertEquals(talk1, talkList[1])
+        assertEquals(talk2, talkList[0])
+        assertEquals(talk1, talkList[1])
     }
 }

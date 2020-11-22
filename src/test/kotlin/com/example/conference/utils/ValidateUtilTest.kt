@@ -3,7 +3,7 @@ package com.example.conference.utils
 import com.example.conference.exceptions.NameContainsDigitException
 import com.example.conference.exceptions.WithoutInvalidTimeException
 import com.example.conference.utils.ValidateUtil.validate
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFailsWith
 
@@ -13,7 +13,7 @@ class ValidateUtilTest {
         val talk = "Writing Fast Tests Against Enterprise Rails 60min"
         val talksList = mutableListOf<String>()
         talksList.add(talk)
-        Assertions.assertDoesNotThrow { validate(talksList) }
+        assertDoesNotThrow { validate(talksList) }
     }
     @Test
     fun `should be classified to be in invalidate string with digits in the name`() {

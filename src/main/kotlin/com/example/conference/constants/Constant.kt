@@ -14,6 +14,10 @@ class Constant {
         const val RGX_IF_CONTAIN_DIGIT = ".*[0-9]+.*"
         const val INVALID_INPUT_TIME_FORMAT = "Invalid Input For Time Format, Please Check And Try Again!"
         const val INVALID_INPUT_CONTAIN_DIGIT = "Invalid Input Contains Digits In Name, Please Check, And Try Again!"
+        const val VALID_INPUT_PATH = "src/main/resources/inputForTest/validInput.txt"
+        const val NAME_CONTAIN_DIGIT_FILE_PATH = "src/main/resources/inputForTest/nameContainDigitInput.txt"
+        const val TIME_INVALID_FILE_PATH = "src/main/resources/inputForTest/timeFormatInvalidInput.txt"
+        const val CAN_NOT_BE_FOUND_PATH = "ssrc/main/resources/input.txt"
         const val File_NOT_FOUND = "Can not find File, Please Check And Try Again!"
         const val PRESS_ENTER = "--------------Enter a Path, And Press Enter To Continue--------------"
         val MORNING_START: LocalTime = LocalTime.of(9, 0)

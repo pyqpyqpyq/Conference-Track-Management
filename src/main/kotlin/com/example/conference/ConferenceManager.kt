@@ -56,7 +56,6 @@ class ConferenceManager {
     fun printResult(tracks: MutableList<Track>) {
         tracks.forEach { track ->
             println(track.toString())
-            // TODO FOREACH
             for (index in 0 until track.morning.arrangedEvents.size) {
                 print(track.morning.addedTime[index].format(DateTimeFormatter.ofPattern("hh:mma ", Locale.ENGLISH)))
                 println(track.morning.arrangedEvents[index].toString())
