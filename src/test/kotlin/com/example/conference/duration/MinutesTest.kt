@@ -1,4 +1,4 @@
-package com.example.conference.durations
+package com.example.conference.duration
 
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals

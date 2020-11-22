@@ -1,4 +1,4 @@
-package com.example.conference.events
+package com.example.conference.event
 
 import com.example.conference.Track
 import com.example.conference.constants.Constant

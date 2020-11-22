@@ -1,7 +1,7 @@
 package com.example.conference
 
-import com.example.conference.slots.Afternoon
-import com.example.conference.slots.Morning
+import com.example.conference.slot.Afternoon
+import com.example.conference.slot.Morning
 
 class Track(val id: Int) {
     val morning = Morning()

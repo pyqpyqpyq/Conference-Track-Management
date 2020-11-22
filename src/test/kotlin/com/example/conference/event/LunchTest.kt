@@ -1,8 +1,8 @@
-package com.example.conference.events
+package com.example.conference.event
 
 import com.example.conference.Track
 import com.example.conference.constants.Constant
-import com.example.conference.events.Lunch.Companion.arrangeLunch
+import com.example.conference.event.Lunch.Companion.arrangeLunch
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 

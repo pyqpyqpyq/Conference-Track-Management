@@ -1,4 +1,4 @@
-package com.example.conference.durations
+package com.example.conference.duration
 
 class Lightning : Duration() {
     override fun toString(): String {

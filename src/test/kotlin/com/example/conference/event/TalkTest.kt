@@ -1,7 +1,7 @@
-package com.example.conference.events
+package com.example.conference.event
 
-import com.example.conference.durations.Minutes
-import com.example.conference.events.Talk.Companion.rankTalks
+import com.example.conference.duration.Minutes
+import com.example.conference.event.Talk.Companion.rankTalks
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 

@@ -1,6 +1,6 @@
-package com.example.conference.events
+package com.example.conference.event
 
-import com.example.conference.durations.Minutes
+import com.example.conference.duration.Minutes
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

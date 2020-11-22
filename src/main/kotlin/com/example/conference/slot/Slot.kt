@@ -1,7 +1,7 @@
-package com.example.conference.slots
+package com.example.conference.slot
 
-import com.example.conference.events.Event
-import com.example.conference.events.Talk
+import com.example.conference.event.Event
+import com.example.conference.event.Talk
 import java.time.LocalTime
 
 abstract class Slot(val startTime: LocalTime, var unassignedTimeLength: Int) {

@@ -1,4 +1,4 @@
-package com.example.conference.slots
+package com.example.conference.slot
 
 import com.example.conference.constants.Constant.Companion.AFTERNOON_ALLOWABLE_DURATION
 import com.example.conference.constants.Constant.Companion.AFTERNOON_DURATION

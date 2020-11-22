@@ -1,4 +1,4 @@
-package com.example.conference.events
+package com.example.conference.event
 
 abstract class Event(val name: String) {
     override fun toString(): String {

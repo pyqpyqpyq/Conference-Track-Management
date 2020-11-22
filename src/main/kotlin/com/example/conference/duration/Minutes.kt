@@ -1,4 +1,4 @@
-package com.example.conference.durations
+package com.example.conference.duration
 
 class Minutes(private val base: Int) : Duration() {
     override fun toString(): String {

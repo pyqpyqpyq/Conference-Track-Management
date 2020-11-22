@@ -1,10 +1,10 @@
-package com.example.conference.slots
+package com.example.conference.slot
 
 import com.example.conference.constants.Constant
-import com.example.conference.durations.Lightning
-import com.example.conference.durations.Minutes
-import com.example.conference.events.Event
-import com.example.conference.events.Talk
+import com.example.conference.duration.Lightning
+import com.example.conference.duration.Minutes
+import com.example.conference.event.Event
+import com.example.conference.event.Talk
 import com.example.conference.utils.TransferUtil.transferStringToTalk
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals

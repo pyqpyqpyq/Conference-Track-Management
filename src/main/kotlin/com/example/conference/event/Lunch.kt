@@ -1,8 +1,8 @@
-package com.example.conference.events
+package com.example.conference.event
 
 import com.example.conference.Track
 import com.example.conference.constants.Constant
-import com.example.conference.durations.Minutes
+import com.example.conference.duration.Minutes
 
 class Lunch : Event(name = "Lunch") {
     val duration = Minutes(60)

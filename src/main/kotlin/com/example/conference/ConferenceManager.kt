@@ -4,12 +4,12 @@ import com.example.conference.constants.Constant.Companion.File_NOT_FOUND
 import com.example.conference.constants.Constant.Companion.INVALID_INPUT_CONTAIN_DIGIT
 import com.example.conference.constants.Constant.Companion.INVALID_INPUT_TIME_FORMAT
 import com.example.conference.constants.Constant.Companion.ONE_MORE_TRACK
-import com.example.conference.events.Lunch.Companion.arrangeLunch
-import com.example.conference.events.NetworkEvent.Companion.arrangeNetworkEvent
-import com.example.conference.events.Talk
+import com.example.conference.event.Lunch.Companion.arrangeLunch
+import com.example.conference.event.NetworkEvent.Companion.arrangeNetworkEvent
+import com.example.conference.event.Talk
 import com.example.conference.exceptions.NameContainsDigitException
 import com.example.conference.exceptions.WithoutInvalidTimeException
-import com.example.conference.slots.Slot
+import com.example.conference.slot.Slot
 import com.example.conference.utils.TransferUtil.transferStringListToTalkList
 import com.example.conference.utils.ValidateUtil.validate
 import java.io.File
