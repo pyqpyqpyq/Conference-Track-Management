@@ -4,12 +4,11 @@ import com.example.conference.Track.Companion.addOneMoreTrack
 import com.example.conference.Track.Companion.getAllSlotsByOrder
 import com.example.conference.durations.Minutes
 import com.example.conference.events.Talk
-import com.example.conference.events.Talk.Companion.transferStringListToTalkList
-import com.example.conference.events.Talk.Companion.transferStringToTalk
 import com.example.conference.slots.Afternoon
 import com.example.conference.slots.Morning
 import com.example.conference.slots.Slot.Companion.arrangeOneTalk
 import com.example.conference.slots.Slot.Companion.rankSlots
+import com.example.conference.utils.TransferUtil.Companion.transferStringToTalk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
@@ -19,16 +18,6 @@ class ConferenceManagerTest {
     fun `should be able to read the file as input`() {
         val conferenceManager = ConferenceManager()
         conferenceManager.readInput().forEach { println(it) }
-    }
-    @Test
-    fun `should be able to transfer StringList to the TalkList`() {
-        val stringList = mutableListOf("Writing Fast Tests Against Enterprise Rails 60min")
-
-        val talkList = transferStringListToTalkList(stringList)
-
-        assertEquals(1, talkList.size)
-        assertEquals(60, talkList[0].duration.toMinutes())
-        assertEquals("Writing Fast Tests Against Enterprise Rails", talkList[0].name)
     }
     @Test
     fun `should init a track when the conference is created`() {

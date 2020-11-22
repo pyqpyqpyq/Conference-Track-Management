@@ -6,8 +6,8 @@ import com.example.conference.constants.Constant
 import com.example.conference.events.Lunch.Companion.arrangeLunch
 import com.example.conference.events.NetworkEvent.Companion.arrangeNetworkEvent
 import com.example.conference.events.Talk
-import com.example.conference.events.Talk.Companion.transferStringListToTalkList
 import com.example.conference.slots.Slot.Companion.arrangeOneTalk
+import com.example.conference.utils.TransferUtil.Companion.transferStringListToTalkList
 import com.example.conference.utils.ValidateUtil.Companion.validate
 import java.io.BufferedReader
 import java.io.File

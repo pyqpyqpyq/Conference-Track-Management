@@ -4,7 +4,7 @@ import com.example.conference.durations.Lightning
 import com.example.conference.durations.Minutes
 import com.example.conference.events.Event
 import com.example.conference.events.Talk
-import com.example.conference.events.Talk.Companion.transferStringToTalk
+import com.example.conference.utils.TransferUtil.Companion.transferStringToTalk
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.time.LocalTime

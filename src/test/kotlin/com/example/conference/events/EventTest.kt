@@ -3,15 +3,9 @@ package com.example.conference.events
 import com.example.conference.durations.Minutes
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 
 class EventTest {
-    @Test
-    fun `should be able to transfer legal String to the Talk`() {
-        val string = "Writing Fast Tests Against Enterprise Rails 60min"
-        assertNotNull(Talk.transferStringToTalk(string))
-    }
     @Test
     fun `two Talk with different name should not be equal `() {
         val name1 = "Writing Fast Tests Against Enterprise Rails"
