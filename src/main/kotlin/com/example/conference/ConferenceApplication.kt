@@ -8,8 +8,12 @@ fun main() {
     println(PRESS_ENTER)
     val scan = Scanner(System.`in`)
     while (scan.hasNextLine()) {
-        scan.nextLine()
-        conferenceManager.manageConference()
+        val inputSRC = scan.nextLine()
+        try {
+            conferenceManager.manageConference(inputSRC)
+        } catch (e: Exception) {
+            println("Unexpected Exception!")
+        }
         println(PRESS_ENTER)
     }
 }

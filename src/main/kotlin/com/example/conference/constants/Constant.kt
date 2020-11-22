@@ -10,11 +10,12 @@ class Constant {
         const val AFTERNOON_ALLOWABLE_DURATION = 60
         const val HUMAN_COMPUTER_DISTANCE = 1
         const val LAST_PART_REPRESENT_DURATION = 1
-        const val INPUT_FILE_PATH = "src/main/resources/input.txt"
         const val RGX_END_WITH_TIME = ".*(lightning|([1-9][0-9]*)min)\$"
         const val RGX_IF_CONTAIN_DIGIT = ".*[0-9]+.*"
-        const val INVALID_INPUT = "Invalid Input Please Check, And Try Again!"
-        const val PRESS_ENTER = "--------------Press Enter To Continue--------------"
+        const val INVALID_INPUT_TIME_FORMAT = "Invalid Input For Time Format, Please Check And Try Again!"
+        const val INVALID_INPUT_CONTAIN_DIGIT = "Invalid Input Contains Digits In Name, Please Check, And Try Again!"
+        const val File_NOT_FOUND = "Can not find File, Please Check And Try Again!"
+        const val PRESS_ENTER = "--------------Enter a Path, And Press Enter To Continue--------------"
         val MORNING_START: LocalTime = LocalTime.of(9, 0)
         val AFTERNOON_START: LocalTime = LocalTime.of(13, 0)
         val LUNCH_TIME: LocalTime = LocalTime.of(12, 0)

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class TransferUtilTest {
+
     @Test
     fun `should be able to transfer String to the Duration`() {
         val string1 = "60min"
@@ -17,7 +18,6 @@ class TransferUtilTest {
     @Test
     fun `should be able to transfer StringList to the TalkList`() {
         val stringList = mutableListOf("Writing Fast Tests Against Enterprise Rails 60min")
-
         val talkList = TransferUtil.transferStringListToTalkList(stringList)
 
         Assertions.assertEquals(1, talkList.size)

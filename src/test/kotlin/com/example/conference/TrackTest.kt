@@ -1,7 +1,6 @@
 package com.example.conference
 
-import com.example.conference.durations.Minutes
-import com.example.conference.events.Talk
+import com.example.conference.constants.Constant
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -12,38 +11,24 @@ class TrackTest {
         Assertions.assertEquals(track1.id, 1)
     }
     @Test
-    fun `should be able to create the object track (by id)which has the morning time slot, and it can put event inside`() {
-        val name = "Writing Fast Tests Against Enterprise Rails"
-        val duration = 60
-        val event = Talk(name, Minutes(duration))
+    fun `track should have the morning time slot inside`() {
         val track = Track(1)
-        track.morning.arrange(event)
-        Assertions.assertEquals(track.morning.unassignedTimeLength, 120)
+        Assertions.assertNotNull(track.morning)
+        Assertions.assertEquals(Constant.MORNING_DURATION, track.morning.length)
+        Assertions.assertEquals(Constant.MORNING_START, track.morning.startTime)
+        Assertions.assertEquals(Constant.MORNING_DURATION, track.morning.unassignedTimeLength)
     }
-
     @Test
-    fun `should be able to create the object track (by id)which has the afternoon time slot, and it can put event inside`() {
-        val name = "Writing Fast Tests Against Enterprise Rails"
-        val duration = 60
-        val event = Talk(name, Minutes(duration))
+    fun `track should have the afternoon time slot inside`() {
         val track = Track(1)
-        track.afternoon.arrange(event)
-        Assertions.assertEquals(track.afternoon.unassignedTimeLength, 180)
-    }
-    @Test
-    fun `should be different if the id of the track is different`() {
-        val track1 = Track(1)
-        val track2 = Track(2)
-        Assertions.assertNotEquals(track1, track2)
-    }
-    @Test
-    fun `should be  different if compare track with other class`() {
-        val track1 = Track(1)
-        Assertions.assertNotEquals(track1, 1)
+        Assertions.assertNotNull(track.afternoon)
+        Assertions.assertEquals(Constant.AFTERNOON_DURATION + Constant.AFTERNOON_ALLOWABLE_DURATION, track.afternoon.length)
+        Assertions.assertEquals(Constant.AFTERNOON_START, track.afternoon.startTime)
+        Assertions.assertEquals(Constant.AFTERNOON_DURATION + Constant.AFTERNOON_ALLOWABLE_DURATION, track.afternoon.unassignedTimeLength)
     }
     @Test
     fun `should be able to transfer to string with expected format`() {
         val track1 = Track(1)
-        Assertions.assertEquals(track1.toString(), "Track 1:")
+        Assertions.assertEquals("Track 1:", track1.toString())
     }
 }
