@@ -15,6 +15,8 @@ class Constant {
         const val RGX_IF_CONTAIN_DIGIT = ".*[0-9]+.*"
         const val INVALID_INPUT = "Invalid Input Please Check, And Try Again!"
         const val PRESS_ENTER = "--------------Press Enter To Continue--------------"
+        val MORNING_START: LocalTime = LocalTime.of(9, 0)
+        val AFTERNOON_START: LocalTime = LocalTime.of(13, 0)
         val LUNCH_TIME: LocalTime = LocalTime.of(12, 0)
         val NETWORK_EVENT_TIME: LocalTime = LocalTime.of(17, 0)
     }

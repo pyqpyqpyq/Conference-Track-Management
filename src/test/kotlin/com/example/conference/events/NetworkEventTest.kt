@@ -16,7 +16,7 @@ class NetworkEventTest {
     fun `should be able to arrange networkEvent for a Afternoon`() {
         val tracks = mutableListOf(Track(1))
         arrangeNetworkEvent(tracks)
-        Assertions.assertEquals("Networking Event", tracks[0].afternoon.events[0].name)
+        Assertions.assertEquals("Networking Event", tracks[0].afternoon.arrangedEvents[0].name)
         Assertions.assertEquals(Constant.NETWORK_EVENT_TIME, tracks[0].afternoon.addedTime.last())
     }
 }

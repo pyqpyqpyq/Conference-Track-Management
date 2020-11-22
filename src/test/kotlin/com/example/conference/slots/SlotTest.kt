@@ -1,5 +1,6 @@
 package com.example.conference.slots
 
+import com.example.conference.constants.Constant
 import com.example.conference.durations.Lightning
 import com.example.conference.durations.Minutes
 import com.example.conference.events.Event
@@ -7,17 +8,30 @@ import com.example.conference.events.Talk
 import com.example.conference.utils.TransferUtil.Companion.transferStringToTalk
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import java.time.LocalTime
 
 class SlotTest {
     @Test
-    fun `It should be able to arrange the event to the slot`() {
-        val name = "Writing Fast Tests Against Enterprise Rails"
-        val duration = 60
-        val event = Talk(name, Minutes(duration))
+    fun `The Slot should be able to set the length of unassignedTimeLength `() {
         val morning = Morning()
-        morning.arrange(event)
+        morning.unassignedTimeLength = 0
+        val afternoon = Afternoon()
+        afternoon.unassignedTimeLength = 0
+        Assertions.assertEquals(0, morning.unassignedTimeLength)
+        Assertions.assertEquals(0, afternoon.unassignedTimeLength)
     }
+
+    @Test
+    fun `It should be able to set the arrangedEvents by order`() {
+        val name2 = "Rails for Python Developers lightning"
+        val duration2 = Lightning()
+        val event2 = Talk(name2, duration2)
+        val morning = Morning()
+        val list = mutableListOf<Event>()
+        list.add(event2)
+        morning.arrangedEvents = list
+        Assertions.assertEquals(event2, morning.arrangedEvents[0])
+    }
+
     @Test
     fun `It should be able to arrange the event to the slot if lots is longer than the event`() {
         val name = "Writing Fast Tests Against Enterprise Rails"
@@ -25,21 +39,7 @@ class SlotTest {
         val event = Talk(name, Minutes(duration))
         val morning = Morning()
         morning.arrange(event)
-    }
-    @Test
-    fun `It should be able to assign the event to the slot `() {
-        val name1 = "Writing Fast Tests Against Enterprise Rails"
-        val duration1 = Minutes(60)
-        val event1 = Talk(name1, duration1)
-        val name2 = "Rails for Python Developers lightning"
-        val duration2 = Lightning()
-        val event2 = Talk(name2, duration2)
-        val morning = Morning()
-        val list = mutableListOf<Event>()
-        morning.arrange(event1)
-        list.add(event2)
-        morning.events = list
-        Assertions.assertEquals(morning.events[0], event2)
+        Assertions.assertEquals(event, morning.arrangedEvents[0])
     }
     @Test
     fun `It should be able to return true when arrange the event to the slot `() {
@@ -47,7 +47,7 @@ class SlotTest {
         val duration = 60
         val event = Talk(name, Minutes(duration))
         val morning = Morning()
-        Assertions.assertEquals(morning.arrange(event), true)
+        Assertions.assertEquals(true, morning.arrange(event))
     }
     @Test
     fun `It should be unable to arrange the event to the slot if lots is shorter than the event`() {
@@ -56,7 +56,7 @@ class SlotTest {
         val event = Talk(name, Minutes(duration))
         val morning = Morning()
         morning.arrange(event)
-        Assertions.assertEquals(morning.unassignedTimeLength, 180)
+        Assertions.assertEquals(0, morning.arrangedEvents.size)
     }
     @Test
     fun `It should be able to return false when arrange the event to the slot unsuccessfully`() {
@@ -64,67 +64,22 @@ class SlotTest {
         val duration = Int.MAX_VALUE
         val event = Talk(name, Minutes(duration))
         val morning = Morning()
-        Assertions.assertEquals(morning.arrange(event), false)
-    }
-    @Test
-    fun `The morning should be able 180min as the length ,The Afternoon should be able 180min as the length,and should use length as the init value `() {
-        val morning = Morning()
-        val afternoon = Afternoon()
-        Assertions.assertEquals(morning.length, 180)
-        Assertions.assertEquals(afternoon.length, 240)
-        Assertions.assertEquals(morning.unassignedTimeLength, 180)
-        Assertions.assertEquals(afternoon.unassignedTimeLength, 240)
-    }
-    @Test
-    fun `The morning and the Afternoon should use length as the init value `() {
-        val morning = Morning()
-        val afternoon = Afternoon()
-        Assertions.assertEquals(morning.length, morning.unassignedTimeLength)
-        Assertions.assertEquals(afternoon.length, afternoon.unassignedTimeLength)
+        Assertions.assertEquals(false, morning.arrange(event))
     }
     @Test
     fun `The slot should be able to record the rest time and when arrange the event the restTime get minus`() {
         val name = "Writing Fast Tests Against Enterprise Rails"
-        val duration = 60
-        val event = Talk(name, Minutes(duration))
+        val eventDuration = 60
+        val event = Talk(name, Minutes(eventDuration))
         val morning = Morning()
         morning.arrange(event)
-        Assertions.assertEquals(morning.unassignedTimeLength, 120)
-    }
-    @Test
-    fun `The slot can also get the corresponding arranged event by it id`() {
-        val name = "Writing Fast Tests Against Enterprise Rails"
-        val duration = 60
-        val event = Talk(name, Minutes(duration))
-        val morning = Morning()
-        morning.arrange(event)
-        Assertions.assertEquals(morning.getEvent(0), event)
-    }
-    @Test
-    fun `The Morning should start from the 9am`() {
-        val morning = Morning()
-        Assertions.assertEquals(morning.startTime, LocalTime.of(9, 0))
-    }
-    @Test
-    fun `The Afternoon should start from the 13pm`() {
-        val afternoon = Afternoon()
-        Assertions.assertEquals(afternoon.startTime, LocalTime.of(13, 0))
-    }
-    @Test
-    fun `The added time should be add the start time first in the morning`() {
-        val morning = Morning()
-        Assertions.assertEquals(morning.addedTime[0], LocalTime.of(9, 0))
-    }
-    @Test
-    fun `The added time should be add the start time first in the Afternoon`() {
-        val afternoon = Afternoon()
-        Assertions.assertEquals(afternoon.addedTime[0], LocalTime.of(13, 0))
+        Assertions.assertEquals(Constant.MORNING_DURATION - eventDuration, morning.unassignedTimeLength)
     }
     @Test
     fun `When there is a arrange operation to the slot ,the addedTime list should record the time of the arrange operation `() {
         val morning = Morning()
         val string1 = "Rails for Python Developers lightning"
         morning.arrange(transferStringToTalk(string1))
-        Assertions.assertEquals(morning.addedTime[1], LocalTime.of(9, 5))
+        Assertions.assertEquals(Constant.MORNING_START.plusMinutes(Lightning().toMinutes().toLong()), morning.addedTime[1])
     }
 }

@@ -9,7 +9,7 @@ class Lunch : Event(name = "Lunch") {
     companion object {
         fun arrangeLunch(tracks: MutableList<Track>): MutableList<Track> {
             tracks.forEach { track ->
-                track.morning.events.add(Lunch())
+                track.morning.arrangedEvents.add(Lunch())
                 track.morning.addedTime.removeLast()
                 track.morning.addedTime.add(Constant.LUNCH_TIME)
             }

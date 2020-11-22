@@ -7,35 +7,20 @@ import java.time.LocalTime
 abstract class Slot(val startTime: LocalTime, var unassignedTimeLength: Int) {
 
     val addedTime = mutableListOf<LocalTime>()
-    var events = mutableListOf<Event>()
+    var arrangedEvents = mutableListOf<Event>()
+
+    init {
+        addedTime.add(startTime)
+    }
 
     fun arrange(talk: Talk): Boolean? {
         return if (talk.duration.toMinutes() <= unassignedTimeLength) {
             this.unassignedTimeLength -= talk.duration.toMinutes()
-            events.add(talk)
+            arrangedEvents.add(talk)
             addedTime.add(addedTime.last().plusMinutes(talk.duration.toMinutes().toLong()))
             true
         } else {
             false
-        }
-    }
-
-    fun getEvent(Id: Int): Event {
-        return events[Id]
-    }
-    companion object {
-        fun rankSlots(inputList: MutableList<Slot>): MutableList<Slot> {
-            inputList.sortByDescending { it.unassignedTimeLength }
-            return inputList
-        }
-        fun arrangeOneTalk(talks: MutableList<Talk>, slots: MutableList<Slot>): Boolean {
-            Talk.rankTalks(talks)
-            return if (slots[0].arrange(talks[0])!!) {
-                talks.removeAt(0)
-                true
-            } else {
-                false
-            }
         }
     }
 }

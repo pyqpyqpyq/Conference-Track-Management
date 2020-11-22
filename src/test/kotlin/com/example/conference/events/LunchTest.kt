@@ -17,7 +17,7 @@ class LunchTest {
     fun `should be able to arrange lunch for a morning`() {
         val tracks = mutableListOf(Track(1))
         arrangeLunch(tracks)
-        Assertions.assertEquals("Lunch", tracks[0].morning.events[0].name)
+        Assertions.assertEquals("Lunch", tracks[0].morning.arrangedEvents[0].name)
         Assertions.assertEquals(Constant.LUNCH_TIME, tracks[0].morning.addedTime.last())
     }
 }

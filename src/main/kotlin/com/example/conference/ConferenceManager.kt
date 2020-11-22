@@ -6,7 +6,7 @@ import com.example.conference.constants.Constant
 import com.example.conference.events.Lunch.Companion.arrangeLunch
 import com.example.conference.events.NetworkEvent.Companion.arrangeNetworkEvent
 import com.example.conference.events.Talk
-import com.example.conference.slots.Slot.Companion.arrangeOneTalk
+import com.example.conference.slots.Slot
 import com.example.conference.utils.TransferUtil.Companion.transferStringListToTalkList
 import com.example.conference.utils.ValidateUtil.Companion.validate
 import java.io.BufferedReader
@@ -48,14 +48,27 @@ class ConferenceManager {
     fun printResult(tracks: MutableList<Track>) {
         tracks.forEach { track ->
             println(track.toString())
-            for (index in 0 until track.morning.events.size) {
+            for (index in 0 until track.morning.arrangedEvents.size) {
                 print(track.morning.addedTime[index].format(DateTimeFormatter.ofPattern("hh:mma ", Locale.ENGLISH)))
-                println(track.morning.events[index].toString())
+                println(track.morning.arrangedEvents[index].toString())
             }
-            for (index in 0 until track.afternoon.events.size) {
+            for (index in 0 until track.afternoon.arrangedEvents.size) {
                 print(track.afternoon.addedTime[index].format(DateTimeFormatter.ofPattern("hh:mma ", Locale.ENGLISH)))
-                println(track.afternoon.events[index].toString())
+                println(track.afternoon.arrangedEvents[index].toString())
             }
+        }
+    }
+    fun rankSlots(inputList: MutableList<Slot>): MutableList<Slot> {
+        inputList.sortByDescending { it.unassignedTimeLength }
+        return inputList
+    }
+    fun arrangeOneTalk(talks: MutableList<Talk>, slots: MutableList<Slot>): Boolean {
+        Talk.rankTalks(talks)
+        return if (slots[0].arrange(talks[0])!!) {
+            talks.removeAt(0)
+            true
+        } else {
+            false
         }
     }
 }
