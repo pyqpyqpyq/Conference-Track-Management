@@ -27,6 +27,7 @@ dependencies {
     testImplementation ("org.junit.platform:junit-platform-launcher:1.6.0")
     testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.3.1")
     testImplementation(kotlin("test"))
+    testImplementation ("io.mockk:mockk:1.8.6")
 }
 
 application {
