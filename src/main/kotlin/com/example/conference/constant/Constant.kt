@@ -1,4 +1,4 @@
-package com.example.conference.constants
+package com.example.conference.constant
 
 import java.time.LocalTime
 

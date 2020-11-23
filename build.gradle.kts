@@ -90,7 +90,6 @@ tasks.jacocoTestCoverageVerification {
         sourceSets.main.get().output.asFileTree.matching {
             // exclude main()
             exclude("**/ConferenceApplication*")
-            exclude("**/Constant*")
         }
     )
 

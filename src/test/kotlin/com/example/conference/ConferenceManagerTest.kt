@@ -1,14 +1,14 @@
 package com.example.conference
 
-import com.example.conference.constants.Constant.CAN_NOT_BE_FOUND_PATH
-import com.example.conference.constants.Constant.NAME_CONTAIN_DIGIT_FILE_PATH
-import com.example.conference.constants.Constant.TIME_INVALID_FILE_PATH
-import com.example.conference.constants.Constant.VALID_INPUT_PATH
+import com.example.conference.constant.Constant.CAN_NOT_BE_FOUND_PATH
+import com.example.conference.constant.Constant.NAME_CONTAIN_DIGIT_FILE_PATH
+import com.example.conference.constant.Constant.TIME_INVALID_FILE_PATH
+import com.example.conference.constant.Constant.VALID_INPUT_PATH
 import com.example.conference.duration.Minutes
 import com.example.conference.event.Talk
 import com.example.conference.slot.Afternoon
 import com.example.conference.slot.Morning
-import com.example.conference.utils.TransferUtil.transferStringToTalk
+import com.example.conference.util.TransferUtil.transferStringToTalk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test

@@ -1,3 +1,3 @@
-package com.example.conference.exceptions
+package com.example.conference.exception
 
 class NameContainsDigitException : Exception()

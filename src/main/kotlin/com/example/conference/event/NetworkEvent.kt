@@ -1,7 +1,7 @@
 package com.example.conference.event
 
 import com.example.conference.Track
-import com.example.conference.constants.Constant
+import com.example.conference.constant.Constant
 
 class NetworkEvent : Event(name = "Networking Event") {
     companion object {

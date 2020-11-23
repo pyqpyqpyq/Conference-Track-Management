@@ -1,6 +1,6 @@
 package com.example.conference
 
-import com.example.conference.constants.Constant
+import com.example.conference.constant.Constant
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull

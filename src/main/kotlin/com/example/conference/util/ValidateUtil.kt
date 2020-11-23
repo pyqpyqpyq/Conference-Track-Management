@@ -1,8 +1,8 @@
-package com.example.conference.utils
+package com.example.conference.util
 
-import com.example.conference.constants.Constant
-import com.example.conference.exceptions.NameContainsDigitException
-import com.example.conference.exceptions.WithoutInvalidTimeException
+import com.example.conference.constant.Constant
+import com.example.conference.exception.NameContainsDigitException
+import com.example.conference.exception.WithoutInvalidTimeException
 import java.util.regex.Pattern
 
 object ValidateUtil {

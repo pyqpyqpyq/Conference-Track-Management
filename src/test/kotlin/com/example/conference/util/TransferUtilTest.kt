@@ -1,4 +1,4 @@
-package com.example.conference.utils
+package com.example.conference.util
 
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals

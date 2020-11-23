@@ -1,8 +1,8 @@
-package com.example.conference.utils
+package com.example.conference.util
 
-import com.example.conference.exceptions.NameContainsDigitException
-import com.example.conference.exceptions.WithoutInvalidTimeException
-import com.example.conference.utils.ValidateUtil.validate
+import com.example.conference.exception.NameContainsDigitException
+import com.example.conference.exception.WithoutInvalidTimeException
+import com.example.conference.util.ValidateUtil.validate
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFailsWith

@@ -1,6 +1,6 @@
-package com.example.conference.utils
+package com.example.conference.util
 
-import com.example.conference.constants.Constant
+import com.example.conference.constant.Constant
 import com.example.conference.duration.Duration
 import com.example.conference.duration.Lightning
 import com.example.conference.duration.Minutes
