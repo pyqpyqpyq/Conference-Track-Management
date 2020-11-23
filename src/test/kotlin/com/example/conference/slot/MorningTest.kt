@@ -1,7 +1,7 @@
 package com.example.conference.slot
 
 import com.example.conference.constants.Constant
-import com.example.conference.constants.Constant.Companion.MORNING_DURATION
+import com.example.conference.constants.Constant.MORNING_DURATION
 import org.junit.jupiter.api.Test
 import java.time.LocalTime
 import kotlin.test.assertEquals

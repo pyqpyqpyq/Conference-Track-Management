@@ -1,8 +1,8 @@
 package com.example.conference.slot
 
-import com.example.conference.constants.Constant.Companion.AFTERNOON_ALLOWABLE_DURATION
-import com.example.conference.constants.Constant.Companion.AFTERNOON_DURATION
-import com.example.conference.constants.Constant.Companion.AFTERNOON_START
+import com.example.conference.constants.Constant.AFTERNOON_ALLOWABLE_DURATION
+import com.example.conference.constants.Constant.AFTERNOON_DURATION
+import com.example.conference.constants.Constant.AFTERNOON_START
 import org.junit.jupiter.api.Test
 import java.time.LocalTime
 import kotlin.test.assertEquals

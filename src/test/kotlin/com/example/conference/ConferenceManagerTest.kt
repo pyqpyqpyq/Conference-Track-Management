@@ -1,9 +1,9 @@
 package com.example.conference
 
-import com.example.conference.constants.Constant.Companion.CAN_NOT_BE_FOUND_PATH
-import com.example.conference.constants.Constant.Companion.NAME_CONTAIN_DIGIT_FILE_PATH
-import com.example.conference.constants.Constant.Companion.TIME_INVALID_FILE_PATH
-import com.example.conference.constants.Constant.Companion.VALID_INPUT_PATH
+import com.example.conference.constants.Constant.CAN_NOT_BE_FOUND_PATH
+import com.example.conference.constants.Constant.NAME_CONTAIN_DIGIT_FILE_PATH
+import com.example.conference.constants.Constant.TIME_INVALID_FILE_PATH
+import com.example.conference.constants.Constant.VALID_INPUT_PATH
 import com.example.conference.duration.Minutes
 import com.example.conference.event.Talk
 import com.example.conference.slot.Afternoon

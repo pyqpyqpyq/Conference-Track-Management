@@ -1,6 +1,6 @@
 package com.example.conference
 
-import com.example.conference.constants.Constant.Companion.PRESS_ENTER
+import com.example.conference.constants.Constant.PRESS_ENTER
 import java.util.Scanner
 
 fun main() {
