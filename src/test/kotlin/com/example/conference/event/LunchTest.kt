@@ -3,6 +3,7 @@ package com.example.conference.event
 import com.example.conference.Track
 import com.example.conference.constant.Constant
 import com.example.conference.event.Lunch.Companion.arrangeLunch
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -12,6 +13,11 @@ class LunchTest {
         val event = Lunch()
         assertEquals("Lunch", event.name)
         assertEquals(60, event.duration.toMinutes())
+    }
+    @Test
+    fun `should be able to toString to display for the talk`() {
+        val event = Lunch()
+        Assertions.assertEquals("Lunch", event.toString())
     }
     @Test
     fun `should be able to arrange lunch for a morning`() {

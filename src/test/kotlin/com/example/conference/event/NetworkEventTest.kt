@@ -3,6 +3,7 @@ package com.example.conference.event
 import com.example.conference.Track
 import com.example.conference.constant.Constant
 import com.example.conference.event.NetworkEvent.Companion.arrangeNetworkEvent
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -11,6 +12,11 @@ class NetworkEventTest {
     fun `should create a networkEvent by giving  the time duration of the event, and can get the name and time duration`() {
         val event = NetworkEvent()
         assertEquals("Networking Event", event.name)
+    }
+    @Test
+    fun `should be able to toString to display for the talk`() {
+        val event = NetworkEvent()
+        Assertions.assertEquals("Networking Event", event.toString())
     }
     @Test
     fun `should be able to arrange networkEvent for a Afternoon`() {

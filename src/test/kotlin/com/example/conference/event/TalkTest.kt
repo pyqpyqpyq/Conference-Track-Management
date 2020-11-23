@@ -2,6 +2,7 @@ package com.example.conference.event
 
 import com.example.conference.duration.Minutes
 import com.example.conference.event.Talk.Companion.rankTalks
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -13,6 +14,13 @@ class TalkTest {
         val event = Talk(name, Minutes(duration))
         assertEquals(event.name, "Writing Fast Tests Against Enterprise Rails")
         assertEquals(60, event.duration.toMinutes())
+    }
+    @Test
+    fun `should be able to toString to display for the talk`() {
+        val name = "Writing Fast Tests Against Enterprise Rails"
+        val duration = Minutes(60)
+        val event1 = Talk(name, duration)
+        Assertions.assertEquals("Writing Fast Tests Against Enterprise Rails 60min", event1.toString())
     }
     @Test
     fun `should order the talks by desc given a list of talks`() {
