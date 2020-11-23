@@ -18,6 +18,7 @@ object Constant {
     const val TIME_INVALID_FILE_PATH = "src/main/resources/inputForTest/timeFormatInvalidInput.txt"
     const val CAN_NOT_BE_FOUND_PATH = "ssrc/main/resources/input.txt"
     const val File_NOT_FOUND = "Can not find File, Please Check And Try Again!"
+    const val UNEXPECTED_EXCEPTION = "Unexpected Exception!"
     const val PRESS_ENTER = "--------------Enter a Path, And Press Enter To Continue--------------"
     val MORNING_START: LocalTime = LocalTime.of(9, 0)
     val AFTERNOON_START: LocalTime = LocalTime.of(13, 0)

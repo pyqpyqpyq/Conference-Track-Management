@@ -4,6 +4,7 @@ import com.example.conference.constant.Constant.File_NOT_FOUND
 import com.example.conference.constant.Constant.INVALID_INPUT_CONTAIN_DIGIT
 import com.example.conference.constant.Constant.INVALID_INPUT_TIME_FORMAT
 import com.example.conference.constant.Constant.ONE_MORE_TRACK
+import com.example.conference.constant.Constant.UNEXPECTED_EXCEPTION
 import com.example.conference.event.Lunch.Companion.arrangeLunch
 import com.example.conference.event.NetworkEvent.Companion.arrangeNetworkEvent
 import com.example.conference.event.Talk
@@ -31,6 +32,8 @@ class ConferenceManager {
             println(INVALID_INPUT_TIME_FORMAT)
         } catch (exception: NameContainsDigitException) {
             println(INVALID_INPUT_CONTAIN_DIGIT)
+        } catch (exception: Exception) {
+            println(UNEXPECTED_EXCEPTION)
         }
     }
     private fun readInput(inputSRC: String): MutableList<String> {
