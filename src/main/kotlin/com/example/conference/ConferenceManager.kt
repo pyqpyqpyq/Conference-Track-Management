@@ -36,7 +36,7 @@ class ConferenceManager {
             println(UNEXPECTED_EXCEPTION)
         }
     }
-    private fun readInput(inputSRC: String): MutableList<String> {
+    fun readInput(inputSRC: String): MutableList<String> {
         val talkListString = mutableListOf<String>()
         File(inputSRC).useLines { lines -> talkListString.addAll(lines) }
         return talkListString

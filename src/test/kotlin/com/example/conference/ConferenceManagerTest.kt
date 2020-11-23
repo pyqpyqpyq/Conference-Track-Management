@@ -192,6 +192,13 @@ class ConferenceManagerTest {
         assertEquals(false, conferenceManager.arrangeOneTalk(talks, conferenceManager.getAllSlotsByOrder(tracks)))
     }
     @Test
+    fun `should be able to add one more track of the conference by using the addOneTrack method`() {
+        val conferenceManager = ConferenceManager()
+        val tracks = mutableListOf<Track>()
+        conferenceManager.addOneTrack(tracks)
+        assertEquals(1, tracks.size)
+    }
+    @Test
     fun `should be able to get all the slots of the conference in Descending rate`() {
         val conferenceManager = ConferenceManager()
         val tracks = mutableListOf<Track>()
