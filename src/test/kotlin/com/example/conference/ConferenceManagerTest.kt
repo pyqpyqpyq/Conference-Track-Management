@@ -3,6 +3,7 @@ package com.example.conference
 import com.example.conference.constant.Constant.CAN_NOT_BE_FOUND_PATH
 import com.example.conference.constant.Constant.NAME_CONTAIN_DIGIT_FILE_PATH
 import com.example.conference.constant.Constant.TIME_INVALID_FILE_PATH
+import com.example.conference.constant.Constant.UNEXPECTED_CASE_PATH
 import com.example.conference.constant.Constant.VALID_INPUT_PATH
 import com.example.conference.duration.Minutes
 import com.example.conference.event.Talk
@@ -154,6 +155,14 @@ class ConferenceManagerTest {
         val conferenceManager = ConferenceManager()
         conferenceManager.manageConference(NAME_CONTAIN_DIGIT_FILE_PATH)
         assertEquals("Invalid Input Contains Digits In Name, Please Check, And Try Again!\n", outContent.toString())
+    }
+    @Test
+    fun `should print invalid unexpected exception if the there is any other exception`() {
+        val outContent = ByteArrayOutputStream()
+        System.setOut(PrintStream(outContent))
+        val conferenceManager = ConferenceManager()
+        conferenceManager.manageConference(UNEXPECTED_CASE_PATH)
+        assertEquals("Unexpected Exception!\n", outContent.toString())
     }
     @Test
     fun `should print result if input is valid`() {

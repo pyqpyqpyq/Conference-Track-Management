@@ -8,8 +8,8 @@ fun main() {
     println(PRESS_ENTER)
     val scan = Scanner(System.`in`)
     while (scan.hasNextLine()) {
-        val inputSRC = scan.nextLine()
-            conferenceManager.manageConference(inputSRC)
+        val inputSrc = scan.nextLine()
+        conferenceManager.manageConference(inputSrc)
         println(PRESS_ENTER)
     }
 }

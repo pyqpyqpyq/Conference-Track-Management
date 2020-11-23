@@ -14,6 +14,7 @@ object Constant {
     const val INVALID_INPUT_TIME_FORMAT = "Invalid Input For Time Format, Please Check And Try Again!"
     const val INVALID_INPUT_CONTAIN_DIGIT = "Invalid Input Contains Digits In Name, Please Check, And Try Again!"
     const val VALID_INPUT_PATH = "src/main/resources/inputForTest/validInput.txt"
+    const val UNEXPECTED_CASE_PATH = "src/main/resources/inputForTest/unexpectedInput.txt"
     const val NAME_CONTAIN_DIGIT_FILE_PATH = "src/main/resources/inputForTest/nameContainDigitInput.txt"
     const val TIME_INVALID_FILE_PATH = "src/main/resources/inputForTest/timeFormatInvalidInput.txt"
     const val CAN_NOT_BE_FOUND_PATH = "ssrc/main/resources/input.txt"
