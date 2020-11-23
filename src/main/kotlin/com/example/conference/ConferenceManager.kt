@@ -56,12 +56,18 @@ class ConferenceManager {
     fun printResult(tracks: MutableList<Track>) {
         tracks.forEach { track ->
             println(track.toString())
+            // for morning
             for (index in 0 until track.morning.arrangedEvents.size) {
+                // print track title
                 print(track.morning.addedTime[index].format(DateTimeFormatter.ofPattern("hh:mma ", Locale.ENGLISH)))
+                // print arrangements
                 println(track.morning.arrangedEvents[index].toString())
             }
+            // for afternoon
             for (index in 0 until track.afternoon.arrangedEvents.size) {
+                // print track title
                 print(track.afternoon.addedTime[index].format(DateTimeFormatter.ofPattern("hh:mma ", Locale.ENGLISH)))
+                // print arrangements
                 println(track.afternoon.arrangedEvents[index].toString())
             }
         }
@@ -72,7 +78,7 @@ class ConferenceManager {
     }
     fun arrangeOneTalk(talks: MutableList<Talk>, slots: MutableList<Slot>): Boolean {
         Talk.rankTalks(talks)
-        return if (slots[0].put(talks[0])!!) {
+        return if (slots[0].put(talks[0])) {
             talks.removeAt(0)
             true
         } else {

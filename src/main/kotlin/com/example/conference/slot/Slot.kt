@@ -13,14 +13,13 @@ abstract class Slot(val startTime: LocalTime, var unassignedTimeLength: Int) {
         addedTime.add(startTime)
     }
 
-    fun put(talk: Talk): Boolean? {
-        return if (talk.duration.toMinutes() <= unassignedTimeLength) {
-            this.unassignedTimeLength -= talk.duration.toMinutes()
-            arrangedEvents.add(talk)
-            addedTime.add(addedTime.last().plusMinutes(talk.duration.toMinutes().toLong()))
-            true
-        } else {
-            false
+    fun put(talk: Talk): Boolean {
+        if (talk.duration.toMinutes() > unassignedTimeLength) {
+            return false
         }
+        this.unassignedTimeLength -= talk.duration.toMinutes()
+        arrangedEvents.add(talk)
+        addedTime.add(addedTime.last().plusMinutes(talk.duration.toMinutes().toLong()))
+        return true
     }
 }
