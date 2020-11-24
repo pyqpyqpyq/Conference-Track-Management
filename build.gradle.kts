@@ -74,7 +74,30 @@ tasks.named<Test>("test") {
         info.events = debug.events
         info.exceptionFormat = debug.exceptionFormat
 
-    }}
+    }
+
+    useJUnitPlatform()
+
+    addTestListener(object : TestListener {
+        override fun beforeSuite(suite: TestDescriptor) {}
+        override fun beforeTest(testDescriptor: TestDescriptor) {}
+        override fun afterTest(testDescriptor: TestDescriptor, result: TestResult) {}
+
+        override fun afterSuite(suite: TestDescriptor, result: TestResult) {
+            if (suite.parent == null) { // root suite
+                logger.quiet("----")
+                logger.quiet("Test result: ${result.resultType}")
+                logger.quiet(
+                    "Test summary: ${result.testCount} tests, " +
+                            "${result.successfulTestCount} succeeded, " +
+                            "${result.failedTestCount} failed, " +
+                            "${result.skippedTestCount} skipped"
+                )
+
+            }
+        }
+    })
+}
 
 jacoco {
     toolVersion = "0.8.5"
