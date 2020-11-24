@@ -13,11 +13,13 @@ class NetworkEventTest {
         val event = NetworkEvent()
         assertEquals("Networking Event", event.name)
     }
+
     @Test
     fun `should be able to toString to display for the talk`() {
         val event = NetworkEvent()
         Assertions.assertEquals("Networking Event", event.toString())
     }
+
     @Test
     fun `should be able to arrange networkEvent for a Afternoon`() {
         val tracks = mutableListOf(Track(1))

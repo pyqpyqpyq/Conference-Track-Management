@@ -41,6 +41,7 @@ class SlotTest {
         morning.put(event)
         assertEquals(event, morning.arrangedEvents[0])
     }
+
     @Test
     fun `It should be able to return true when put the event to the slot `() {
         val name = "Writing Fast Tests Against Enterprise Rails"
@@ -49,6 +50,7 @@ class SlotTest {
         val morning = Morning()
         assertEquals(true, morning.put(event))
     }
+
     @Test
     fun `It should be unable to put the event to the slot if lots is shorter than the event`() {
         val name = "Writing Fast Tests Against Enterprise Rails"
@@ -58,6 +60,7 @@ class SlotTest {
         morning.put(event)
         assertEquals(0, morning.arrangedEvents.size)
     }
+
     @Test
     fun `It should be able to return false when put the event to the slot unsuccessfully`() {
         val name = "Writing Fast Tests Against Enterprise Rails"
@@ -66,6 +69,7 @@ class SlotTest {
         val morning = Morning()
         assertEquals(false, morning.put(event))
     }
+
     @Test
     fun `The slot should be able to record the rest time and when put the event the restTime get minus`() {
         val name = "Writing Fast Tests Against Enterprise Rails"
@@ -75,6 +79,7 @@ class SlotTest {
         morning.put(event)
         assertEquals(Constant.MORNING_DURATION - eventDuration, morning.unassignedTimeLength)
     }
+
     @Test
     fun `When there is a put operation to the slot ,the addedTime list should record the time of the arrange operation `() {
         val morning = Morning()

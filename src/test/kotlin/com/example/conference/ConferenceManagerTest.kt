@@ -52,6 +52,7 @@ class ConferenceManagerTest {
             outContent.toString()
         )
     }
+
     @Test
     fun `should be able to read the input`() {
         val conferenceManager = ConferenceManager()
@@ -68,6 +69,7 @@ class ConferenceManagerTest {
         conferenceManager.manageConference(CAN_NOT_BE_FOUND_PATH)
         assertEquals("Can not find File, Please Check And Try Again!\n", outContent.toString())
     }
+
     @Test
     fun `should print invalid input if the input's time format is invalid`() {
         val outContent = ByteArrayOutputStream()
@@ -76,6 +78,7 @@ class ConferenceManagerTest {
         conferenceManager.manageConference(TIME_INVALID_FILE_PATH)
         assertEquals("Invalid Input For Time Format, Please Check And Try Again!\n", outContent.toString())
     }
+
     @Test
     fun `should print invalid input if the input name contains digits`() {
         val outContent = ByteArrayOutputStream()
@@ -84,6 +87,7 @@ class ConferenceManagerTest {
         conferenceManager.manageConference(NAME_CONTAIN_DIGIT_FILE_PATH)
         assertEquals("Invalid Input Contains Digits In Name, Please Check, And Try Again!\n", outContent.toString())
     }
+
     @Test
     fun `should print invalid unexpected exception if the there is any other exception`() {
         val outContent = ByteArrayOutputStream()
@@ -92,6 +96,7 @@ class ConferenceManagerTest {
         conferenceManager.manageConference(UNEXPECTED_CASE_PATH)
         assertEquals("Unexpected Exception!\n", outContent.toString())
     }
+
     @Test
     fun `if conferenceManager arrange the talks at current tracks successful it should return the list of Track as the result output`() {
         val conference = ConferenceManager()
@@ -104,6 +109,7 @@ class ConferenceManagerTest {
         assertEquals(talk, resultAfterArrange[0].afternoon.arrangedEvents[0])
         assertEquals("Networking Event", resultAfterArrange[0].afternoon.arrangedEvents[1].name)
     }
+
     @Test
     fun `conferenceManager arrange should copy a input and origin input talks should be unmodified`() {
         val conference = ConferenceManager()
@@ -114,6 +120,7 @@ class ConferenceManagerTest {
         assertEquals(1, talks1.size)
         assertEquals(talk1, talks1[0])
     }
+
     @Test
     fun `should be able to output the result`() {
         val outContent = ByteArrayOutputStream()
@@ -135,6 +142,7 @@ class ConferenceManagerTest {
             "05:00PM Networking Event\n"
         assertEquals(expectedResult, outContent.toString())
     }
+
     @Test
     fun `should be able to rank the list of slots by their length in descending, so the longest event should be in the first`() {
         val conferenceManager = ConferenceManager()
@@ -149,6 +157,7 @@ class ConferenceManagerTest {
         assertEquals(morning2, slotList[1])
         assertEquals(morning1, slotList[2])
     }
+
     @Test
     fun `should be able to put the first event to the first lots`() {
         val conferenceManager = ConferenceManager()
@@ -164,6 +173,7 @@ class ConferenceManagerTest {
         assertNotNull(tracks[0].afternoon)
         assertEquals(1, talks.size)
     }
+
     @Test
     fun `should be able to put the first event to the first lots if successful return true`() {
         val conferenceManager = ConferenceManager()
@@ -177,6 +187,7 @@ class ConferenceManagerTest {
         conferenceManager.getAllSlotsByOrder(tracks)
         assertEquals(true, conferenceManager.arrangeOneTalk(talks, conferenceManager.getAllSlotsByOrder(tracks)))
     }
+
     @Test
     fun `should be able to put the first event to the first lots if unsuccessful return false`() {
         val conferenceManager = ConferenceManager()
@@ -191,6 +202,7 @@ class ConferenceManagerTest {
         conferenceManager.getAllSlotsByOrder(tracks)
         assertEquals(false, conferenceManager.arrangeOneTalk(talks, conferenceManager.getAllSlotsByOrder(tracks)))
     }
+
     @Test
     fun `should be able to add one more track of the conference by using the addOneTrack method`() {
         val conferenceManager = ConferenceManager()
@@ -198,6 +210,7 @@ class ConferenceManagerTest {
         conferenceManager.addOneTrack(tracks)
         assertEquals(1, tracks.size)
     }
+
     @Test
     fun `should be able to get all the slots of the conference in Descending rate`() {
         val conferenceManager = ConferenceManager()

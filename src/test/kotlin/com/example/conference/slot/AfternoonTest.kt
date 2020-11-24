@@ -13,6 +13,7 @@ class AfternoonTest {
         val afternoon = Afternoon()
         assertEquals(LocalTime.of(13, 0), afternoon.startTime)
     }
+
     @Test
     fun `The afternoon should be able 180min as the length ,and should use length as the init value of unassignedTimeLength `() {
         val afternoon = Afternoon()
@@ -20,6 +21,7 @@ class AfternoonTest {
         assertEquals(AFTERNOON_START, afternoon.startTime)
         assertEquals(AFTERNOON_DURATION + AFTERNOON_ALLOWABLE_DURATION, afternoon.unassignedTimeLength)
     }
+
     @Test
     fun `The Afternoon should use length as the init value `() {
         val afternoon = Afternoon()

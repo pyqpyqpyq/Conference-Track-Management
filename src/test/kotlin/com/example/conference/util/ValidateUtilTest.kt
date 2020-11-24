@@ -15,6 +15,7 @@ class ValidateUtilTest {
         talksList.add(talk)
         assertDoesNotThrow { validate(talksList) }
     }
+
     @Test
     fun `should be classified to be in invalidate string with digits in the name`() {
         val string = "Communicating3 Over Distance 60min"
@@ -22,6 +23,7 @@ class ValidateUtilTest {
         talks.add(string)
         assertFailsWith<NameContainsDigitException> { validate(talks) }
     }
+
     @Test
     fun `should be classified to be invalidate not end with time`() {
         val string = "Communicating Over Distance 60min day"

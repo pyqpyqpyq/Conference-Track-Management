@@ -9,6 +9,7 @@ class MinutesTest {
         val time = Minutes(30)
         assertEquals(30, time.toMinutes())
     }
+
     @Test
     fun `It should be able to get the display of duration When unit is minutes`() {
         val time = Minutes(30)

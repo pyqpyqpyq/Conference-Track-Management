@@ -19,7 +19,6 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 class ConferenceManager {
-
     fun manageConference(inputSRC: String) {
         try {
             val inputString = readInput(inputSRC)
@@ -36,6 +35,7 @@ class ConferenceManager {
             println(UNEXPECTED_EXCEPTION)
         }
     }
+
     fun readInput(inputSRC: String): MutableList<String> {
         val talkListString = mutableListOf<String>()
         File(inputSRC).useLines { lines -> talkListString.addAll(lines) }
@@ -47,10 +47,12 @@ class ConferenceManager {
         repeat(n) { addOneTrack(tracks) }
         val copyTalks = mutableListOf<Talk>().apply { addAll(talks) }
         while (copyTalks.isNotEmpty()) {
+            // if failed, call itself by adding one more track
             if (!arrangeOneTalk(copyTalks, getAllSlotsByOrder(tracks))) {
                 return arrangeEvents(talks, n + ONE_MORE_TRACK)
             }
         }
+        // if success, arrange lunch and networkEvent and return
         arrangeLunch(tracks)
         arrangeNetworkEvent(tracks)
         return tracks
@@ -75,10 +77,12 @@ class ConferenceManager {
             }
         }
     }
+
     fun rankSlots(inputList: MutableList<Slot>): MutableList<Slot> {
         inputList.sortByDescending { it.unassignedTimeLength }
         return inputList
     }
+
     fun arrangeOneTalk(talks: MutableList<Talk>, slots: MutableList<Slot>): Boolean {
         Talk.rankTalks(talks)
         return if (slots[0].put(talks[0])) {
@@ -88,9 +92,11 @@ class ConferenceManager {
             false
         }
     }
+
     fun addOneTrack(tracks: MutableList<Track>) {
         tracks.add(Track(tracks.size + ONE_MORE_TRACK))
     }
+
     fun getAllSlotsByOrder(tracks: MutableList<Track>): MutableList<Slot> {
         val conferenceManager = ConferenceManager()
         val availableSlots = mutableListOf<Slot>()

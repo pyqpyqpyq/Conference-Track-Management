@@ -11,6 +11,7 @@ class TrackTest {
         val track1 = Track(1)
         assertEquals(1, track1.id)
     }
+
     @Test
     fun `track should have the morning time slot inside`() {
         val track = Track(1)
@@ -19,6 +20,7 @@ class TrackTest {
         assertEquals(Constant.MORNING_START, track.morning.startTime)
         assertEquals(Constant.MORNING_DURATION, track.morning.unassignedTimeLength)
     }
+
     @Test
     fun `track should have the afternoon time slot inside`() {
         val track = Track(1)
@@ -27,6 +29,7 @@ class TrackTest {
         assertEquals(Constant.AFTERNOON_START, track.afternoon.startTime)
         assertEquals(Constant.AFTERNOON_DURATION + Constant.AFTERNOON_ALLOWABLE_DURATION, track.afternoon.unassignedTimeLength)
     }
+
     @Test
     fun `should be able to transfer to string with expected format`() {
         val track1 = Track(1)

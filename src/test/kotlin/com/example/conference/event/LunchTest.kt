@@ -14,11 +14,13 @@ class LunchTest {
         assertEquals("Lunch", event.name)
         assertEquals(60, event.duration.toMinutes())
     }
+
     @Test
     fun `should be able to toString to display for the talk`() {
         val event = Lunch()
         Assertions.assertEquals("Lunch", event.toString())
     }
+
     @Test
     fun `should be able to arrange lunch for a morning`() {
         val tracks = mutableListOf(Track(1))

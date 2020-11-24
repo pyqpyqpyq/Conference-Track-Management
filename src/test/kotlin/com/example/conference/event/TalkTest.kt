@@ -15,6 +15,7 @@ class TalkTest {
         assertEquals(event.name, "Writing Fast Tests Against Enterprise Rails")
         assertEquals(60, event.duration.toMinutes())
     }
+
     @Test
     fun `should be able to toString to display for the talk`() {
         val name = "Writing Fast Tests Against Enterprise Rails"
@@ -22,6 +23,7 @@ class TalkTest {
         val event1 = Talk(name, duration)
         Assertions.assertEquals("Writing Fast Tests Against Enterprise Rails 60min", event1.toString())
     }
+
     @Test
     fun `should order the talks by desc given a list of talks`() {
         val name1 = "Writing Fast Tests Against Enterprise Rails"
