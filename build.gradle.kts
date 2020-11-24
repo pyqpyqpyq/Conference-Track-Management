@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     application
     jacoco
@@ -23,11 +24,11 @@ dependencies {
     ktlint("com.pinterest:ktlint:0.39.0")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    testImplementation ("org.junit.jupiter:junit-jupiter-api:5.3.1")
-    testImplementation ("org.junit.platform:junit-platform-launcher:1.6.0")
-    testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.3.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.3.1")
+    testImplementation("org.junit.platform:junit-platform-launcher:1.6.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.3.1")
     testImplementation(kotlin("test"))
-    testImplementation ("io.mockk:mockk:1.8.6")
+    testImplementation("io.mockk:mockk:1.8.6")
 }
 
 application {
@@ -47,6 +48,33 @@ tasks.withType<KotlinCompile> {
 tasks.withType<JavaExec> {
     standardInput = System.`in`
 }
+tasks.named<Test>("test") {
+    testLogging {
+        // set options for log level LIFECYCLE
+        events(TestLogEvent.FAILED,
+            TestLogEvent.PASSED,
+            TestLogEvent.SKIPPED,
+            TestLogEvent.STANDARD_OUT)
+        exceptionFormat = TestExceptionFormat.SHORT
+
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
+
+        // set options for log level DEBUG and INFO
+        debug {
+            events(TestLogEvent.STARTED,
+                TestLogEvent.FAILED,
+                TestLogEvent.PASSED,
+                TestLogEvent.SKIPPED,
+                TestLogEvent.STANDARD_ERROR,
+                TestLogEvent.STANDARD_OUT)
+            exceptionFormat = TestExceptionFormat.FULL
+        }
+        info.events = debug.events
+        info.exceptionFormat = debug.exceptionFormat
+
+    }}
 
 jacoco {
     toolVersion = "0.8.5"
@@ -119,4 +147,4 @@ val ktlintFormat by tasks.creating(JavaExec::class) {
     args = listOf("-F", "src/**/*.kt")
 }
 
-tasks.check { dependsOn(ktlintCheck, tasks.jacocoTestReport, tasks.jacocoTestCoverageVerification)}
+tasks.check { dependsOn(ktlintCheck, tasks.jacocoTestReport, tasks.jacocoTestCoverageVerification) }
