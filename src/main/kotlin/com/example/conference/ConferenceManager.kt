@@ -33,6 +33,8 @@ class ConferenceManager {
             println(INVALID_INPUT_CONTAIN_DIGIT)
         } catch (exception: Exception) {
             println(UNEXPECTED_EXCEPTION)
+        } catch (error: Error) {
+            println(UNEXPECTED_EXCEPTION)
         }
     }
 
