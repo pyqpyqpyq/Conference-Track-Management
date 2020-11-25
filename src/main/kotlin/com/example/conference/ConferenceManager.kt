@@ -85,12 +85,11 @@ class ConferenceManager {
 
     fun arrangeOneTalk(talks: MutableList<Talk>, slots: MutableList<Slot>): Boolean {
         Talk.rankTalks(talks)
-        return if (slots[0].put(talks[0])) {
+        if (slots[0].put(talks[0])) {
             talks.removeAt(0)
-            true
-        } else {
-            false
+            return true
         }
+        return false
     }
 
     fun addOneTrack(tracks: MutableList<Track>) {
