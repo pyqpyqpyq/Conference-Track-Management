@@ -21,7 +21,6 @@ class TransferUtilTest {
     fun `should be able to transfer StringList to the TalkList`() {
         val stringList = mutableListOf("Writing Fast Tests Against Enterprise Rails 60min")
         val talkList = TransferUtil.transferStringListToTalkList(stringList)
-
         assertEquals(1, talkList.size)
         assertEquals(60, talkList[0].duration.toMinutes())
         assertEquals("Writing Fast Tests Against Enterprise Rails", talkList[0].name)
